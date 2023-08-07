@@ -1,0 +1,43 @@
+.barNav{
+    width: 100%;
+    position: fixed;
+    z-index: 102;
+}
+
+#save{
+    background-color: rgb(190, 211, 211);
+     border-radius: 25px; 
+     font-size: 12px;
+}
+#save:hover{
+    background-color:rgb(230, 201, 105);
+}
+
+#log{
+    background-color: rgb(175, 188, 188);
+     border-radius: 25px;
+     margin-right: 8px;
+     font-size: 12px;
+}
+#log:hover{
+    background-color:rgb(230, 201, 105);
+}
+#home{
+    border-radius: 50px; 
+    background-color: rgb(98, 157, 158);
+    margin-right: 12px;
+}
+#home:hover{
+    background-color: rgb(96, 203, 224);
+    
+}
+h4{
+    justify-content: center;
+     font-style: italic; 
+     font-weight: bold; color: rgb(230, 201, 105);
+     margin-right: 20px;
+     padding-top: 15px;
+     font-size: 35px;
+
+    
+}

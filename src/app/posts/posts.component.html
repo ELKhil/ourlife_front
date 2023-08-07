@@ -1,0 +1,236 @@
+
+
+ <!--  spinner -->
+ <ngx-spinner 
+
+ bdColor="rgba(0,0,0,0.1)"           
+ size = "default" 
+ type = "la-ball-spin-clockwise "
+ [fullScreen] = "true"
+ >
+
+            <div class="search-results">
+
+                        <div class="row pb-5">
+                            <div style="margin-top: 700px;" class="col-md-12 d-flex justify-content-center">
+                                <div class="text-muted h6 alert alert-secondary p-2">
+                                    <div class="la-ball-spin-clockwise la-dark la-sm">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                </div>
+</ngx-spinner>
+<div *ngIf="session.isLogged" class="principale">
+<div>
+ <!--ajouter un post  -->
+ <div class="container mt-2 mb-2" style="margin-bottom: 15px;" >
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-10" style="border-radius: 50px ;">
+            <div class="card">
+                <div *ngIf="session.isLogged" class="d-flex justify-content-between p-2 px-3">
+                    <div class="d-flex flex-row align-items-center"> <img [src]="session.decodedToken.imageProfil | toImage" width="40" height="40" class="rounded-circle">
+                        <div class="d-flex flex-column ml-2"> <input class="btnQuoiDeNeuf" readonly type="btn btn primary" routerLink="makePoster" value="Quoi de neuf ?" > </div>
+                    </div>
+                    
+                </div> 
+                <div class="p-2">
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div id ="ajouterPost" class="d-flex flex-row icons d-flex align-items-center">
+                             <a routerLink="makePoster"><span><i class="fa fa-camera "></i>Photo/vidéo</span></a>   </div>
+                      
+                    </div>
+                    <hr>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+               
+
+
+   
+        
+       
+    <div  *ngFor="let post of posts; let i=index ">
+
+        <div class="container mt-2 mb-2" style="margin-bottom: 15px;" >
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-md-10" style="border-radius: 50px ;">
+                    <div class="card" >
+                        <div class="d-flex justify-content-between p-2 px-3">
+                            <div id="profilUser"  (click)="postsUser(post.nomUser)" class="d-flex flex-row align-items-center"> <img [src]="post.imageUser | toImage " width="50" class="rounded-circle">
+                                <div class="d-flex flex-column ml-2" style="margin-right: 5px;"> <span class="font-weight-bold">{{post.nomUser}}</span>  </div>
+                            </div>
+                            <div class="d-flex flex-row mt-1 ellipsis" *ngIf="post.dateDePost"> <small class="mr-2" style="padding-right: 5px;">{{post.dateDePost | calculeTime}} </small>
+                                <div *ngIf="session.decodedToken.role[0] === 'ROLE_ADMIN'">
+                                    <div class ="supprimer" (click)="confirmDialog(post.id)">
+                                        <i class="fa fa-trash "></i>
+                                    </div>   
+                                </div>
+                              
+                                <div *ngIf="session.decodedToken.role[0] === 'ROLE_USER'">
+                                      <div class ="supprimer" (click)="confirmDialog(post.id)">
+                                               <i *ngIf="post.nomUser == session.decodedToken.username" class="fa fa-trash "></i>
+                                      </div>   
+                                </div>
+                            </div>
+                        </div> 
+                        <div>
+                        <p style="padding-left: 15px;"class="text-justify">{{post.contenu}}</p>
+                    
+                        <img  *ngIf="post.typemedia === 'image'" img [src]="post.media | toImage " width="100%" height="100%" class="img-fluid">
+                    
+                         <video *ngIf="post.typemedia === 'video'" width="100%" height="100%" controls>
+                             <source img [src]="post.media | toImage " > 
+                         </video>
+
+
+
+                        </div>
+                      
+                          
+                        
+                        <div class="p-2">
+                            <hr>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex flex-row icons d-flex align-items-center"> </div>
+                                <div *ngIf="post. commentaires.length != 0">
+                                     <div id="showComment" (click)="showComment(post.id)" class="d-flex flex-row muted-color showComment"> <span >{{post.commentaires.length}} comments</span> </div>
+                                </div>
+                                <div *ngIf="post. commentaires.length == 0">
+                                    <div class="d-flex flex-row muted-color"> <span >{{post. commentaires.length}} comments</span> </div>
+                                </div>
+                               
+                            </div>
+                            <hr>
+                            
+                                 
+                                    <div *ngIf="loadComents == null">
+                                         <div *ngIf="showCommentaire" >
+                                        <div *ngFor="let com of post.commentaires" class="comments">
+                                                <div class="d-flex flex-row mb-2"> <img [src]="com.userComImage | toImage" width="40" class="rounded-image"> 
+                                                    <div  class="d-flex flex-column ml-2">
+                                                        <div class="styleMessage" >
+                                                            <span class="name">{{com.userComNom}}</span> <small class="comment-text" style="margin-left: 20px; font-size: 15px;">{{com.contenu}}</small>
+                                                        </div>
+                                                    
+                                                        <div class="d-flex flex-row align-items-center status"> <small>{{com.dateMessage | calculeTime}}</small>
+                                                            <i *ngIf="com.userComNom === session.decodedToken.username || session.decodedToken.role[0] === 'ROLE_ADMIN'" id="messageDelet" class="fa fa-trash" (click)="confirmDialogMessage(com.idMessage, post.id)"></i></div>
+                                                    </div>
+                                                </div>
+                                    <!--   <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/1YrCKa1.jpg" width="40" class="rounded-image">
+                                            <div class="d-flex flex-column ml-2"> <span class="name">Elizabeth goodmen</span> <small class="comment-text">Thanks for sharing!</small>
+                                                <div class="d-flex flex-row align-items-center status"> <small>Like</small> <small>Reply</small> <small>Translate</small> <small>8 mins</small> </div>
+                                            </div>
+                                        </div> -->
+                                        
+                                        </div>
+
+                                    </div>
+                                 </div>
+
+                            
+                                <div *ngIf="showCommentaire" >
+                                   <div *ngIf="loadComents != null && loadPostId == post.id"> 
+                                       <div *ngFor="let com of loadComents" class="comments">
+                                       <div  class="d-flex flex-row mb-2"> <img [src]="com.userComImage | toImage" width="40" class="rounded-image">
+                                           <div  class="d-flex flex-column ml-2">
+                                               <div class="styleMessage" >
+                                                    <span class="name">{{com.userComNom}}</span> <small class="comment-text" style="margin-left: 20px; font-size: 15px;">{{com.contenu}}</small> 
+                                                    
+                                               </div>
+                                                 
+                                               <div class="d-flex flex-row align-items-center status">  <small>{{com.dateMessage | calculeTime}}</small>
+                                                <i *ngIf="com.userComNom === session.decodedToken.username || session.decodedToken.role[0] === 'ROLE_ADMIN'" id="messageDelet" class="fa fa-trash" (click)="confirmDialogMessage(com.idMessage , post.id)"></i>  </div>
+                                           </div>
+                                       </div>
+                               
+                                       
+                                       </div>
+
+                                     </div>
+                                 </div>
+
+                          
+                        </div>
+                        
+
+                            <div class="commentaire">
+                                    <div class="imgMessage" >
+                                        <img [src]="session.decodedToken.imageProfil | toImage" id ="imgComment" style=" width: 32px; height: 32px; margin-right: 5px;" class="rounded-circle">
+                                    </div>
+                                    <div id ="message" class="comment-input" >
+                                                <input id="{{i}}" type="text" [(ngModel)] = "ajoutComment" class="form-control coment">
+                                                <div class="fonts"> <a class="btn btn-sm" (click)="submit(post.id)" id="home"><i  class="fa fa-envelope"></i></a></div>
+                                    </div>
+                            </div>
+                           
+                </div>
+            </div>
+        </div>
+    
+    
+     
+    
+</div>
+
+
+
+ 
+</div>
+   
+
+
+                    <div *ngIf="!notEmptyPost" class="row pb-5">
+                        <div class="col-md-12 d-flex justify-content-center">
+                            <div class="text-muted h6 alert alert-secondary p-2">
+                                No more items to show
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div
+                    class="search-results"
+                    infiniteScroll
+                    [infiniteScrollDistance]="2"
+                    [infiniteScrollThrottle]="50"
+                    (scrolled)="onScroll()"
+                    > </div>
+                    
+
+    
+
+ </div>
+</div>
+
+<div *ngIf="!session.isLogged" >
+    <section>
+        <h1 style="display: flex; justify-content: center; font-size: 40px; font-style: italic; margin-top: 20px; padding-bottom: 15px;">Welcome to Our Life</h1>
+        
+        <div style="display: flex; justify-content: center; "><img style="border-radius: 20px;" src="../../assets/images/angular2.gif" alt=""></div>
+        
+    </section>
+ 
+</div>
+
+
+  
+

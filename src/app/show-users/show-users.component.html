@@ -1,0 +1,21 @@
+
+<body *ngIf="session.isLogged">
+    <h5 style="padding-left: 20px; padding-right: 20px; font-size: 20px;"> Bachelier en Informatique </h5>
+    <div class="scroll-container">
+            <ul *ngFor="let user of users;">
+                <li style="list-style-type:none; display: flex; justify-content: space-between;">
+                    <div class="scroll-page">
+                        <img [src]="user.imageProfil | toImage" alt="">{{user.nom}}
+                    </div>
+                    <div *ngIf="session.decodedToken.role[0] === 'ROLE_ADMIN' && session.decodedToken.username !== user.nomUtilisateur"  (click)="confirmDialogUser(user.nomUtilisateur)"class="supprimer">
+                        <i class="fa fa-trash "></i>
+                    </div> 
+                    <div *ngIf="session.decodedToken.role[0] === 'ROLE_USER' && session.decodedToken.username == user.nomUtilisateur" (click)="confirmDialogUser2(user.nomUtilisateur)" class="supprimer">
+                        <i class="fa fa-trash "></i>
+                    </div> 
+
+                </li>
+            </ul>
+        
+    </div>
+</body>

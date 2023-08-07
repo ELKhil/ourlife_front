@@ -1,0 +1,66 @@
+<!-- Section: Design Block -->
+<section style ="margin: 20px 80px 80px 80px;" class=" text-center text-lg-start">
+    <style>
+      .rounded-t-5 {
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+      }
+  
+      @media (min-width: 992px) {
+        .rounded-tr-lg-0 {
+          border-top-right-radius: 0;
+        }
+  
+        .rounded-bl-lg-5 {
+          border-bottom-left-radius: 0.5rem;
+        }
+      }
+    </style>
+    <div class="card mb-3">
+      <div class="row g-0 d-flex align-items-center">
+      
+        <div class="col-lg-8">
+          <div class="card-body py-5 px-md-5 ">
+            <h5 class="text-uppercase text-cente mb-5">Quoi de neuf.......</h5>
+  
+            <form [formGroup]="postForm" (ngSubmit)="submit()" >
+            
+  
+              <!--  Message -->
+              <div class="form-outline mb-5">
+                <label for="contenu" class="required">Message</label>
+                <textarea required class="form-control form-control-lg" id="contenu" placeholder="Quoi de neuf...?" rows="4" formControlName="contenu"> </textarea>
+                <div class="text-danger" *ngIf="postForm.get('contenu')?.errors?.['required'] && postForm.get('contenu')?.touched">Ce champ est requis</div>
+
+               
+              </div>
+              <!-- File -->
+              <div class="form-outline mb-5"> 
+                <i class="fa fa-camera"></i>
+                <label class="form-label" for="media">Image/vidéo</label>
+                <input type="file" id="media" (change)="onChange($event)" class="form-control form-control-lg"/>
+               
+              </div>
+              <!-- 2 column grid layout for inline styling -->
+              <div *ngIf="fileDown" class="row mb-5">
+                <div class="col">
+              <label for="typemedia">Type de media</label>
+              <select class="form-control mt-2" id="typemedia" formControlName="typemedia">
+                <option [selected]="true" value="">Type de media</option>
+                <option  value="image">Image</option>
+                <option value="video">Video</option>
+               
+              </select> 
+                </div>
+              </div>
+  
+              <!-- Submit button -->
+              <button class="btn btn-success btn-block mb-4">Poster</button>
+  
+            </form>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
