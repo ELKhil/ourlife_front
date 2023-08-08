@@ -1,5 +1,5 @@
 import { Component,EventEmitter, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { UserService } from '../Services/user.service'
 import { UserForm } from '../Models/UserForm';
 import { Router } from '@angular/router';
@@ -20,13 +20,13 @@ declare var toastr : any;
 export class RegisterComponent implements OnInit {
 
   users : UserForm [] =[];
-  fg! : FormGroup;
+  fg! : UntypedFormGroup;
   inputClicked : boolean = false;
   fileSize : number = 0;
   fileType : string = "";
   
   constructor(
-    private _userService : UserService, private fb: FormBuilder, public _router: Router
+    private _userService : UserService, private fb: UntypedFormBuilder, public _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
       mdp: [null, Validators.required],
       confirmMdp: [null, Validators.required],
 
-      imageProfil: new FormControl(null, {
+      imageProfil: new UntypedFormControl(null, {
       validators: [Validators.required, this.checkFileSize]
          // <-------
       })
@@ -80,7 +80,7 @@ export class RegisterComponent implements OnInit {
       this.inputClicked = true;
   }
 
-  checkPassword(c : FormGroup) {
+  checkPassword(c : UntypedFormGroup) {
     console.log("je suis dans le checkpassword");
     if(c.get('mdp')?.value !== '' && c.get('confirmMdp')?.value !== ''){
       if(c.get('mdp')?.value !== c.get('confirmMdp')?.value){

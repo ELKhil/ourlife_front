@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { resetFakeAsyncZone } from '@angular/core/testing';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Commentaire } from '../Models/Commentaire';
@@ -37,7 +37,7 @@ export class PostsComponent implements OnInit {
   userName! :string;
   
 
-  fg! : FormGroup;
+  fg! : UntypedFormGroup;
   ajoutComment! : string;
   result: string = "";
 
@@ -46,7 +46,7 @@ export class PostsComponent implements OnInit {
   
 
   constructor(
-    private fb : FormBuilder,
+    private fb : UntypedFormBuilder,
     private postsService: PostsService,
     private spinner: NgxSpinnerService,
     private http: HttpClient,

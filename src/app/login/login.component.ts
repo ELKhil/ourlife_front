@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserForm } from '../Models/UserForm';
 import { LoginService } from '../Services/login.service';
@@ -17,12 +17,12 @@ declare var toastr : any;
 
 
 export class LoginComponent implements OnInit {
-  fg!: FormGroup;
+  fg!: UntypedFormGroup;
 
   users : UserForm [] =[];
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private loginService: LoginService,
     private session: SessionService,
     private router: Router,
