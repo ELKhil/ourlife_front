@@ -21,7 +21,7 @@ export class UserService {
   }
   
   post(value : UserForm){
-    return this.http.post<any>(environment.api_url + '/api/user', value);
+    return this.http.post<any>(environment.api_url + 'api/user', value);
   }
 
   deletUser(username : string){
