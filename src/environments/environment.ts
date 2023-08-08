@@ -4,8 +4,11 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://localhost:8000',
+  api_url: 'https://api-ourlife-fc4625848857.herokuapp.com/',
 };
+
+/* 'http://localhost:8000' */
+
 
 /*
  * For easier debugging in development mode, you can import the following file
