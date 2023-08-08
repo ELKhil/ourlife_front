@@ -17,7 +17,7 @@ export class UserService {
 
 
   get(): Observable<UserForm[]>{
-    return this.http.get<UserForm[]>(environment.api_url +'/api/users');
+    return this.http.get<UserForm[]>(environment.api_url + '/api/users');
   }
   
   post(value : UserForm){
