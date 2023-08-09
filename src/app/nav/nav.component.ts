@@ -7,11 +7,14 @@ import { SessionService } from '../Services/session.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
+  isLogged: boolean = false;
 
   constructor(public session: SessionService) { }
 
   ngOnInit(): void {
-
+    this.session.isLogged.subscribe(loggedIn => {
+      this.isLogged = loggedIn;
+    });
   }
 
   deconnecter(){

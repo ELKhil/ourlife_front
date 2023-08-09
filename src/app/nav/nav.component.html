@@ -11,15 +11,15 @@
             
             <li class="nav-item active"style="align-self: center;">
               <a class="btn btn-sm " id="log"
-              routerLink="login" *ngIf="!session.isLogged">Se connecter</a>
+              routerLink="login" *ngIf="!isLogged">Se connecter</a>
             </li>
             <li class="nav-item active"style="align-self: center;">
               <a class="btn btn-sm " id="log"
-              routerLink="login" *ngIf="session.isLogged" (click)="deconnecter()">Se deconnecter</a>
+              routerLink="login" *ngIf="isLogged" (click)="deconnecter()">Se deconnecter</a>
             </li>
 
             <li class="nav-item" style="align-self: center;">
-              <a id="save"class="btn btn-sm" *ngIf="!session.isLogged" routerLink="register">S'enregistrer</a>
+              <a id="save"class="btn btn-sm" *ngIf="!isLogged" routerLink="register">S'enregistrer</a>
             </li>
         
           </ul>

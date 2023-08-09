@@ -41,6 +41,8 @@ export class PostsComponent implements OnInit {
   ajoutComment! : string;
   result: string = "";
 
+  isLogged: boolean = false;
+
   
 
   
@@ -67,6 +69,10 @@ export class PostsComponent implements OnInit {
 
       //Une méthode qui charge page par page
       this.postsService.getPage(this.nbPage).subscribe(data => this.posts = data);
+
+      this.session.isLogged.subscribe(loggedIn => {
+        this.isLogged = loggedIn;
+      });
       
   }
 
