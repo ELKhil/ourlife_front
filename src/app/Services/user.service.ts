@@ -32,6 +32,5 @@ export class UserService {
     return this.http.get<string>(`${environment.api_url}/api/image/${codeImage}`);
   }
   
-
   
 }

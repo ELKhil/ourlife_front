@@ -17,7 +17,7 @@ export class ShowInfoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (!this.session.isLogged) {
+    if (this.session.isLogged) {
       const codeImage = this.session.decodedToken.imageProfil; 
       this._userService.getUserProfileImage(codeImage).subscribe(url => {
         this.profileImageUrl = url;
