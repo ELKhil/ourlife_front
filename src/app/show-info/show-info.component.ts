@@ -21,7 +21,7 @@ export class ShowInfoComponent implements OnInit {
    console.log('ngOnInit called', this.session.isLogged);
    this.session.isLogged.subscribe(loggedin => {
     this.isLogged = loggedin
-    if (this.isLogged) {
+    if(this.isLogged) {
       const codeImage = this.session.decodedToken.imageProfil;
       console.log('Fetching image with code:', codeImage); 
       this._userService.getUserProfileImage(codeImage).subscribe(url => {
@@ -32,4 +32,6 @@ export class ShowInfoComponent implements OnInit {
   });
   
 }
+
+
 }

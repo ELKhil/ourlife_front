@@ -18,8 +18,8 @@ export class ShowUsersComponent implements OnInit {
   users : UserForm [] =[];
   active :boolean = false;
   result: string = "";
- 
   isLogged: boolean = false;
+ 
 
   constructor(
     private _userService : UserService, public session: SessionService, private _postsService : PostsService, public dialog: MatDialog,
@@ -30,6 +30,7 @@ export class ShowUsersComponent implements OnInit {
          this._userService.get().subscribe(data=> this.users = data );
          this.session.isLogged.subscribe(loggedIn => {
           this.isLogged = loggedIn;
+        });
       }
   
 
