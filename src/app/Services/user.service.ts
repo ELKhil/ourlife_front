@@ -29,7 +29,7 @@ export class UserService {
   }
 
   getUserProfileImage(codeImage: string): Observable<string> {
-    return this.http.get<string>(`${environment.api_url}/api/image/${codeImage}`);
+    return this.http.get<string>(`${environment.api_url}/images/${codeImage}`);
   }
   
   
