@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserForm } from '../Models/UserForm';
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +31,10 @@ export class UserService {
   }
 
   getUserProfileImage(codeImage: string): Observable<string> {
-    return this.http.get<string>(`${environment.api_url}/images/${codeImage}`);
+    return this.http.get(`${environment.api_url}/images/${codeImage}`, { responseType: 'blob' })
+      .pipe(map(blob => URL.createObjectURL(blob)));
   }
+  
   
   
 }
