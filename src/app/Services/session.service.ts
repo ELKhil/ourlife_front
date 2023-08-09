@@ -12,10 +12,11 @@ export class SessionService {
 
   decodedToken! : Token;
 
-  isLogged!: boolean;
+  isLogged = false;
 
   constructor() { 
     let token = localStorage.getItem('TOKEN');
+    console.log('Token from local storage:', token);
     if(token){
       this.save(token);
     }
