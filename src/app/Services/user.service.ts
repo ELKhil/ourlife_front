@@ -28,5 +28,10 @@ export class UserService {
     return this.http.get<any>(environment.api_url + '/api/user/delet/' + username);
   }
 
+  getUserProfileImage(codeImage: string): Observable<string> {
+    return this.http.get<string>(`${environment.api_url}/api/image/${codeImage}`);
+  }
+  
+
   
 }

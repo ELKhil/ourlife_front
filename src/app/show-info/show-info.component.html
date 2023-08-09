@@ -3,10 +3,10 @@
 <body *ngIf="session.isLogged">
     <div class="body1">
             <div *ngIf="session.isLogged" class="scroll-page1">
-                <img [src]="session.decodedToken.imageProfil | toImage" alt="">
+                <img [src]=" profileImageUrl | toImage" alt="imageProfil">
             </div>
             <div *ngIf="!session.isLogged" class="scroll-page1">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/1200px-OOjs_UI_icon_userAvatar.svg.png"alt="yo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/1200px-OOjs_UI_icon_userAvatar.svg.png"alt="photo profil">
             </div>
 
             

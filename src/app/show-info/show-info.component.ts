@@ -1,6 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../Services/session.service';
+import { UserService } from '../Services/user.service';
 
 @Component({
   selector: 'app-show-info',
@@ -9,13 +10,18 @@ import { SessionService } from '../Services/session.service';
 })
 export class ShowInfoComponent implements OnInit {
 
-  constructor(public session: SessionService) { }
+  profileImageUrl?: string;
+
+  constructor(public session: SessionService,  private _userService : UserService) { }
 
 
 
   ngOnInit(): void {
+    if (!this.session.isLogged) {
+      const codeImage = this.session.decodedToken.imageProfil; 
+      this._userService.getUserProfileImage(codeImage).subscribe(url => {
+        this.profileImageUrl = url;
+      });
+    }
   }
-
-
-
 }
