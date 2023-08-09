@@ -11,6 +11,7 @@ import { UserService } from '../Services/user.service';
 export class ShowInfoComponent implements OnInit {
 
   profileImageUrl?: string;
+  isLogged: boolean = false;
 
   constructor(public session: SessionService,  private _userService : UserService) { }
 
@@ -18,8 +19,9 @@ export class ShowInfoComponent implements OnInit {
 
   ngOnInit(): void {
    console.log('ngOnInit called', this.session.isLogged);
-   this.session.isLogged.subscribe(isLogged => {
-    if (isLogged) {
+   this.session.isLogged.subscribe(loggedin => {
+    this.isLogged = loggedin
+    if (this.isLogged) {
       const codeImage = this.session.decodedToken.imageProfil;
       console.log('Fetching image with code:', codeImage); 
       this._userService.getUserProfileImage(codeImage).subscribe(url => {

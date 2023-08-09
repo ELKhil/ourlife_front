@@ -1,17 +1,17 @@
 
 
-<body *ngIf="session.isLogged">
+<body *ngIf="isLogged">
     <div class="body1">
             <div *ngIf="session.isLogged" class="scroll-page1">
                 <img [src]="profileImageUrl | toImage" alt="imageProfil">
             </div>
-            <div *ngIf="!session.isLogged" class="scroll-page1">
+            <div *ngIf="!isLogged" class="scroll-page1">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/1200px-OOjs_UI_icon_userAvatar.svg.png"alt="photo profil">
             </div>
 
             
             <div class="scroll-page2">
-                <ul *ngIf="session.isLogged" style="list-style-type:none; ">
+                <ul *ngIf="isLogged" style="list-style-type:none; ">
                             <li style="color: rgb(6, 118, 6)">Connecté.e</li>
                                 <li>
                             {{session.decodedToken.username}}
