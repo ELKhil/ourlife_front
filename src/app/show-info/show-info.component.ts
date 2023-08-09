@@ -17,14 +17,16 @@ export class ShowInfoComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log('ngOnInit called', this.session.isLogged);
-    if (this.session.isLogged) {
-      const codeImage = this.session.decodedToken.imageProfil; 
-      console.log('Fetching image with code:', codeImage);
+   console.log('ngOnInit called', this.session.isLogged);
+   this.session.isLogged.subscribe(isLogged => {
+    if (!isLogged) {
+      const codeImage = this.session.decodedToken.imageProfil;
+      console.log('Fetching image with code:', codeImage); 
       this._userService.getUserProfileImage(codeImage).subscribe(url => {
-        console.log('Image URL:', url);
+         console.log('Image URL:', url);
         this.profileImageUrl = url;
       });
     }
-  }
+  });
+  
 }
