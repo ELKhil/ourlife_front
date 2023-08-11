@@ -153,7 +153,7 @@ export class PostsComponent implements OnInit {
       }
       
       //Envoie de message
-      this.comentService.post(commentaire).subscribe();
+      this.comentService.post(commentaire, this.session.token).subscribe();
    
       //Actualiser les messages
       this.comentService.getMessages(Number(postId)).subscribe(data => this.loadComents = data);
