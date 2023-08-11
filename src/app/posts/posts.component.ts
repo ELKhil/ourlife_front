@@ -43,7 +43,7 @@ export class PostsComponent implements OnInit {
   result: string = "";
 
   isLogged: boolean = false;
-  profileImageUrl?: string;
+
   
 
   
@@ -74,13 +74,7 @@ export class PostsComponent implements OnInit {
 
       this.session.isLogged.subscribe(loggedIn => {
       this.isLogged = loggedIn;
-      if(this.isLogged) {
-        const codeImage = this.session.decodedToken.imageProfil;
-        console.log('Fetching image with code:', codeImage); 
-        this.profileImageUrl = `${environment.api_url}/images/${codeImage}`;
-      }
-
-
+   
       });
       
   }
