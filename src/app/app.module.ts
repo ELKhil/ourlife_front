@@ -14,10 +14,11 @@ import { MakePosterComponent } from './make-poste/make-poste.component';
 import { CalculeTimePipe } from './pipe/calcule-time.pipe';
 import { ToImagePipe } from './pipe/to-image.pipe';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ConfirmDialogComponent,
     RegisterComponent,
     
+    
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     
     
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
