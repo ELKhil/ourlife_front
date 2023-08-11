@@ -50,12 +50,12 @@ export class LoginComponent implements OnInit {
         this.session.save(auth.token);
         toastr.success("Vous etes bien connecté.e")
         this.isLoading = false;
-        this.router.navigateByUrl('login');
+        
       },
       error: () => {
         this.isLoading = false;
-        toastr.message('La connexion a échoué ! Veuillez réessayer ', 'error', 5000);
-        console.log('...');
+        toastr.error('La connexion a échoué ! Veuillez réessayer ', 'Erreur', { timeOut: 5000 });
+        this.router.navigateByUrl('login');
       }
     })
   }
