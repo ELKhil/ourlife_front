@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
         this._userService.post(this.fg.value).subscribe(()=>{
         toastr.success("Vous etes bien enregistré.e");
         this._userService.active = true;
-        this._router.navigateByUrl('');
+        this._router.navigateByUrl('login');
      
     });
     }else{

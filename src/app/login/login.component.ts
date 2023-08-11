@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   fg!: UntypedFormGroup;
 
   users : UserForm [] =[];
+  isLoading: boolean = false;
 
   constructor(
     private fb: UntypedFormBuilder,
@@ -37,16 +38,24 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    if(this.fg.invalid) 
+
+    this.isLoading = true;
+    if(this.fg.invalid){
+      this.isLoading = false;
       return;
+    } 
+      
     this.loginService.login(this.fg.value).subscribe({
       next: (auth) => {
         this.session.save(auth.token);
         toastr.success("Vous etes bien connecté.e")
-        this.router.navigateByUrl('');
+        this.isLoading = false;
+        this.router.navigateByUrl('login');
       },
       error: () => {
-        console.log('La connexion a échoué...');
+        this.isLoading = false;
+        toastr.message('La connexion a échoué ! Veuillez réessayer ', 'error', 5000);
+        console.log('...');
       }
     })
   }
