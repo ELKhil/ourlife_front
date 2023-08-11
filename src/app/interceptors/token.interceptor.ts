@@ -16,6 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    console.log("sessionLogged:value=>" ,this._session.isLogged )
     if(this._session.isLogged) {
       let clone = request.clone({setHeaders: {  
           Authorization: 'Bearer ' + this._session.token
