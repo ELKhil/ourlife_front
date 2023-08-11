@@ -12,6 +12,7 @@ import { ConfirmDialogComponent, ConfirmDialogModel } from './confirm-dialog/con
 export class AppComponent {
   title = 'my-new-project';
   result: string = "";
+  isLogged: boolean = false;
 
   constructor(
     public session: SessionService,
@@ -39,7 +40,10 @@ export class AppComponent {
 
   ngOnInit(): void {
    // this.router.navigate(['/category']);  
-    this.router.navigateByUrl(''); 
+    this.router.navigateByUrl('');
+    this.session.isLogged.subscribe(loggedIn => {
+      this.isLogged = loggedIn; 
+    });
   }
 
   logout() {
