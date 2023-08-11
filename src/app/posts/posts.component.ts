@@ -13,6 +13,7 @@ import { SessionService } from '../Services/session.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment.prod';
 
 declare var toastr :any;
 
@@ -42,7 +43,7 @@ export class PostsComponent implements OnInit {
   result: string = "";
 
   isLogged: boolean = false;
-
+  profileImageUrl?: string;
   
 
   
@@ -58,6 +59,7 @@ export class PostsComponent implements OnInit {
     public dialog: MatDialog,
    
    
+   
   
   ) { }
 
@@ -71,7 +73,14 @@ export class PostsComponent implements OnInit {
       this.postsService.getPage(this.nbPage).subscribe(data => this.posts = data);
 
       this.session.isLogged.subscribe(loggedIn => {
-        this.isLogged = loggedIn;
+      this.isLogged = loggedIn;
+      if(this.isLogged) {
+        const codeImage = this.session.decodedToken.imageProfil;
+        console.log('Fetching image with code:', codeImage); 
+        this.profileImageUrl = `${environment.api_url}/images/${codeImage}`;
+      }
+
+
       });
       
   }

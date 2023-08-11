@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserForm } from '../Models/UserForm';
-import { map } from 'rxjs/operators';
+
 
 
 @Injectable({
@@ -29,12 +29,4 @@ export class UserService {
   deletUser(username : string){
     return this.http.get<any>(environment.api_url + '/api/user/delet/' + username);
   }
-
-  getUserProfileImage(codeImage: string): Observable<string> {
-    return this.http.get(`${environment.api_url}/images/${codeImage}`, { responseType: 'blob' })
-      .pipe(map(blob => URL.createObjectURL(blob)));
-  }
-  
-  
-  
 }

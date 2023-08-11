@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../Services/session.service';
 import { UserService } from '../Services/user.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-show-info',
@@ -24,10 +25,7 @@ export class ShowInfoComponent implements OnInit {
     if(this.isLogged) {
       const codeImage = this.session.decodedToken.imageProfil;
       console.log('Fetching image with code:', codeImage); 
-      this._userService.getUserProfileImage(codeImage).subscribe(url => {
-         console.log('Image URL:', url);
-        this.profileImageUrl = url;
-      });
+      this.profileImageUrl = `${environment.api_url}/images/${codeImage}`;
     }
   });
   
