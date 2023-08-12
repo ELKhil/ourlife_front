@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { SessionService } from './Services/session.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogModel } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -13,11 +14,14 @@ export class AppComponent {
   title = 'my-new-project';
   result: string = "";
   isLogged: boolean = false;
+  isHomePage: boolean = false;
+
 
   constructor(
     public session: SessionService,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private route: ActivatedRoute,
   
  
   ) {}
@@ -40,10 +44,16 @@ export class AppComponent {
 
   ngOnInit(): void {
    // this.router.navigate(['/category']);  
-    this.router.navigateByUrl('');
+    //this.router.navigateByUrl('');
     this.session.isLogged.subscribe(loggedIn => {
       this.isLogged = loggedIn; 
     });
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+          this.isHomePage = event.urlAfterRedirects === '/accueil';
+
+      }
+  });
   }
 
   logout() {

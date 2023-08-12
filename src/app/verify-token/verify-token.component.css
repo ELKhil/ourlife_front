@@ -1,6 +1,13 @@
-.messageInfo {
+.messageReponse{
     display: flex;
     justify-content: center; /* Centrer horizontalement */
     align-items: center; /* Centrer verticalement */
     height: 100vh; /* Utilisez la hauteur de la fenêtre comme référence. Ajustez selon vos besoins. */
 }
+.validerEmail {
+    display: flex;
+    flex-direction: column; /* Ceci inverse l'ordre des éléments enfants */
+    align-items: center; /* Centre les éléments horizontalement */
+}
+
+

@@ -6,22 +6,16 @@
 <div class="principale">
 
 
-        <div *ngIf="isLogged" class="bloc1">
+        <div *ngIf="isLogged && !isHomePage" class="bloc1">
             <app-show-users></app-show-users>
-        </div>
-
-        <div *ngIf="isLogged" class="bloc2">
-              <app-posts></app-posts>
         </div>
 
         <div class="bloc3">
             <router-outlet></router-outlet>
         </div>
 
-
-        <div *ngIf="isLogged" class="bloc4">
+        <div *ngIf="isLogged && !isHomePage" class="bloc4">
             <app-show-info></app-show-info>
         </div>
-
 
 </div>

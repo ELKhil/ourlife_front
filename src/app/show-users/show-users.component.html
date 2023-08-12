@@ -5,12 +5,12 @@
             <ul *ngFor="let user of users;">
                 <li style="list-style-type:none; display: flex; justify-content: space-between;">
                     <div class="scroll-page">
-                        <img [src]="user.imageProfil | toImage" alt="">{{user.nom}}
+                        <img [src]="user.imageProfil | toImage" alt="">{{user.firstname}}
                     </div>
-                    <div *ngIf="session.decodedToken.role[0] === 'ROLE_ADMIN' && session.decodedToken.username !== user.nomUtilisateur"  (click)="confirmDialogUser(user.nomUtilisateur)"class="supprimer">
+                    <div *ngIf="session.decodedToken.role[0] === 'ROLE_ADMIN' && session.decodedToken.email !== user.email"  (click)="confirmDialogUser(user.email)"class="supprimer">
                         <i class="fa fa-trash "></i>
                     </div> 
-                    <div *ngIf="session.decodedToken.role[0] === 'ROLE_USER' && session.decodedToken.username == user.nomUtilisateur" (click)="confirmDialogUser2(user.nomUtilisateur)" class="supprimer">
+                    <div *ngIf="session.decodedToken.role[0] === 'ROLE_USER' && session.decodedToken.email == user.email" (click)="confirmDialogUser2(user.email)" class="supprimer">
                         <i class="fa fa-trash "></i>
                     </div> 
 

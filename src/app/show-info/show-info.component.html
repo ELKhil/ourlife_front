@@ -14,7 +14,7 @@
                 <ul *ngIf="isLogged" style="list-style-type:none; ">
                             <li style="color: rgb(6, 118, 6)">Connecté.e</li>
                                 <li>
-                            {{session.decodedToken.username}}
+                            {{session.decodedToken.fullName}}
                                 </li>
                                 
                                 <li>{{session.decodedToken.role[0]}}</li>

@@ -1,10 +1,11 @@
 export interface Token{
         iat: number,
         exp: number,
-        username: string,
+        email: string,
         role:  string[],
         imageProfil: string,
-        nom:string,
+        fullName:string,
+        stars : number,
         id: number,
 }
 

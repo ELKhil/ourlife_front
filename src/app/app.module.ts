@@ -21,6 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccueilComponent } from './accueil/accueil.component';
+import { VerifyTokenComponent } from './verify-token/verify-token.component';
+import { PublicationComponent } from './publication/publication.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { AccueilComponent } from './accueil/accueil.component';
     ConfirmDialogComponent,
     RegisterComponent,
     AccueilComponent,
+    VerifyTokenComponent,
+    PublicationComponent,
     
     
   ],

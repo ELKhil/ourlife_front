@@ -29,4 +29,10 @@ export class UserService {
   deletUser(username : string){
     return this.http.get<any>(environment.api_url + '/api/user/delet/' + username);
   }
+  verifyToken(value : string) {
+    return this.http.post<any>(`${environment.api_url}/api/verif/${value}`, {});
+  }
 }
+
+
+

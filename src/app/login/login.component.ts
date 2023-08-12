@@ -26,39 +26,54 @@ export class LoginComponent implements OnInit {
     private fb: UntypedFormBuilder,
     private loginService: LoginService,
     private session: SessionService,
-    private router: Router,
-    private _userService : UserService
+    private router: Router
+
   ) { }
 
   ngOnInit(): void {
     this.fg = this.fb.group({
-      username: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]]
     });
   }
 
   submit() {
-
     this.isLoading = true;
-    if(this.fg.invalid){
-      this.isLoading = false;
-      return;
-    } 
-      
+
+    if (this.fg.invalid) {
+        this.isLoading = false;
+        return;
+    }
+
     this.loginService.login(this.fg.value).subscribe({
       next: (auth) => {
-        this.session.save(auth.token);
-        toastr.success("Vous etes bien connecté.e")
-        this.isLoading = false;
-        
+          this.session.save(auth.token);
+          toastr.success("Vous êtes bien connecté.e");
+          this.isLoading = false;
+          // Redirection vers 'publication/posts'
+          this.router.navigate(['publication/posts']);
       },
-      error: () => {
-        this.isLoading = false;
-        toastr.error('La connexion a échoué ! Veuillez réessayer ', 'Erreur', { timeOut: 5000 });
-        this.router.navigateByUrl('login');
+      error: (err) => {
+          this.isLoading = false;
+          
+          // Utiliser une expression régulière pour extraire le message d'erreur
+          const regex = /<!-- (.*?) -->/;
+          const matches = err.error.match(regex);
+          
+          let errorMessage;
+          if (matches && matches[1]) {
+              errorMessage = matches[1];
+          } else {
+              errorMessage = 'La connexion a échoué ! Veuillez réessayer';
+          }
+  
+          toastr.error(errorMessage, 'Erreur', { timeOut: 5000 });
       }
-    })
-  }
+  });
+  
+  
+}
+
 
  
 }

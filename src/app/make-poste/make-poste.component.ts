@@ -39,7 +39,7 @@ export class MakePosterComponent implements OnInit {
       this.postService.post(this.postForm.value).subscribe( {
         next : (p) => {
           toastr.success("Votre poste a bien été enregistré");
-          this.route.navigateByUrl('');
+          this.route.navigateByUrl('publication');
         }, error: () => {
           toastr.error("Something wrong");
         }

@@ -21,6 +21,10 @@
             <li class="nav-item" style="align-self: center;">
               <a id="save"class="btn btn-sm" *ngIf="!isLogged" routerLink="register">S'enregistrer</a>
             </li>
+            <li class="nav-item active"style="align-self: center;">
+              <a class="btn btn-sm " id="log"
+              routerLink="/publication" *ngIf="isLogged" >Publication</a>
+            </li>
         
           </ul>
           <div style="margin-left: 200px;"> 

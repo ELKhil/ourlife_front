@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SessionService } from '../Services/session.service';
+import { take, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,18 @@ export class IsLoggedGuard implements CanActivate {
   }
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      let isLogged = this.session.isLogged;
-      if(!isLogged) {
-        this.router.navigate(['/login']);
-      }
-      return isLogged;
+    state: RouterStateSnapshot): Observable<boolean> {
+      return this.session.isLogged.pipe(
+        take(1),
+        map(isLogged => {
+          if (isLogged) {
+            console.log("User already logged in. Redirecting to /accueil");
+            this.router.navigate(['accueil']);
+            return false;
+          }
+          return true;
+        })
+      );
   }
   
 }

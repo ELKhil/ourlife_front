@@ -1,32 +1,55 @@
 <!-- Section: Design Block -->
-<!-- Section: Design Block -->
-<section class="login-section">
-  <div class="login-card">
-    <div class="card-body">
-      <h3 class="text-center text-uppercase">Se connecter</h3>
+<section style ="margin: 20px 80px 80px 80px;" class=" text-center text-lg-start">
+  <style>
+    .rounded-t-5 {
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
 
-      <form [formGroup]="fg" (ngSubmit)="submit()">
-        <!-- Email input -->
-        <div class="form-group">
-          <label for="username">Le nom d'utilisateur</label>
-          <input type="text" id="username" class="form-control" formControlName="username" />
-        </div>
+    @media (min-width: 992px) {
+      .rounded-tr-lg-0 {
+        border-top-right-radius: 0;
+      }
 
-        <!-- Password input -->
-        <div class="form-group">
-          <label for="password">Mot de passe</label>
-          <input type="password" id="password" class="form-control" formControlName="password" />
-        </div>
+      .rounded-bl-lg-5 {
+        border-bottom-left-radius: 0.5rem;
+      }
+    }
+  </style>
+  <div class="card ">
+    <div class="row ">
+     
+      
+      <div class="col">
+        <div class="card-body">
+          <h3 class="text-uppercase text-center">Se connecter</h3>
 
-        <!-- Submit button -->
-        <div class="text-center">
-          <button class="btn btn-success">Se connecter</button>
+          <form [formGroup]="fg" (ngSubmit)="submit()">
+            <!-- Email input -->
+            <!-- Email input -->
+            <div class="form-outline mb-4 col-md-12">
+              <input type="email" id="emailInput" class="form-control" formControlName="email"/>
+              <label class="form-label" for="emailInput">Email</label>
+            </div>
+
+
+            <!-- Password input -->
+            <div class="form-outline mb-4 col-md-12">
+              <input type="password" id="form2Example2" class="form-control" formControlName="password"/>
+              <label class="form-label" for="form2Example2">Mot de passe</label>
+            </div>
+
+
+            <!-- Submit button -->
+            <button class="btn btn-success btn-block mb-4">Se connecter</button>
+
+          </form>
+
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </section>
-
 <!-- Autres éléments de votre template -->
 
 <div  *ngIf="isLoading" class="text-center my-3">

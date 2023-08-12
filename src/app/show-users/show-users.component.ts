@@ -35,9 +35,9 @@ export class ShowUsersComponent implements OnInit {
   
 
 
-  delet(username : string){
-    console.log(username);
-    this._userService.deletUser(username).subscribe({
+  delet(email : string){
+    console.log(email);
+    this._userService.deletUser(email).subscribe({
         next : (p) => {
           toastr.success("L'utilisateur a bien été supprimé");
           location.reload();
@@ -47,9 +47,9 @@ export class ShowUsersComponent implements OnInit {
     });
   }
 
-  deletUser(username : string){
-    console.log(username);
-    this._userService.deletUser(username).subscribe({
+  deletUser(email : string){
+    console.log(email);
+    this._userService.deletUser(email).subscribe({
         next : (p) => {
           toastr.success("L'utilisateur a bien été supprimé");
           this.session.clear();
