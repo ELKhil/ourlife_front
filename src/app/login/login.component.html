@@ -18,30 +18,72 @@
   </style>
   <div class="card ">
     <div class="row ">
-     
-      
       <div class="col">
         <div class="card-body">
-          <h3 class="text-uppercase text-center">Se connecter</h3>
-
+          <div class="d-flex justify-content-center">
+            <span class="h2 fw-bold mb-0">Connexion</span>
+        </div>
+    
           <form [formGroup]="fg" (ngSubmit)="submit()">
             <!-- Email input -->
             <!-- Email input -->
-            <div class="form-outline mb-4 col-md-12">
-              <input type="email" id="emailInput" class="form-control" formControlName="email"/>
-              <label class="form-label" for="emailInput">Email</label>
+            <div class="container">
+
+              <div class="form-outline mb-4 col-md-6 text-center"> <!-- ajoutez text-center pour centrer le bouton horizontalement -->
+            
+         
+         
+             </div>  
+              <div class="row justify-content-center"> <!-- justify-content-center est utilisé pour centrer les colonnes à l'intérieur de cette rangée -->
+            
+                <!-- Email input -->
+                <div class="form-outline mb-4 col-md-8">
+                  <img class="rounded-image" src="assets/images/OurLifeLogo.png" alt="Mot de passe oublié">
+              </div>
+              
+            
+              </div>
+
+              <div class="row justify-content-center"> <!-- justify-content-center est utilisé pour centrer les colonnes à l'intérieur de cette rangée -->
+            
+                <!-- Email input -->
+                <div class="form-outline mb-4 col-md-8">
+                  <label class="form-label" for="emailInput">Email:</label>
+                  <input type="email" id="emailInput" class="form-control" formControlName="email" placeholder="Entrez votre email"/>
+                </div>
+            
+              </div>
+            
+              <div class="row justify-content-center"> 
+            
+                <!-- Password input -->
+                <div class="form-outline mb-4 col-md-8">
+                  <label class="form-label" for="form2Example2">Mot de passe :</label>
+                  <input type="password" id="form2Example2" class="form-control" formControlName="password" placeholder="Entrez votre mot de passe"/>
+                </div>
+            
+              </div>
+
+              <div class="row justify-content-center"> 
+            
+                <!-- Password input -->
+                <div class="form-outline mb-4 col-md-6">
+                   <a routerLink="/forgetPassword" class="d-block text-center">Mot de passe oublié...?</a> 
+                </div>
+            
+              </div>
+              <div class="row justify-content-center align-items-center" > <!-- ajoutez align-items-center et définissez une hauteur -->
+    
+                <!-- Password input -->
+                <div class="form-outline mb-4 col-md-6 text-center"> <!-- ajoutez text-center pour centrer le bouton horizontalement -->
+            
+                   <button class="btn btn-dark btn-lg btn-block" [disabled]="!fg.valid">Se connecter</button>
+            
+                </div>          
             </div>
-
-
-            <!-- Password input -->
-            <div class="form-outline mb-4 col-md-12">
-              <input type="password" id="form2Example2" class="form-control" formControlName="password"/>
-              <label class="form-label" for="form2Example2">Mot de passe</label>
+   
             </div>
-
-
-            <!-- Submit button -->
-            <button class="btn btn-success btn-block mb-4">Se connecter</button>
+      
 
           </form>
 
@@ -50,6 +92,7 @@
     </div>
   </div>
 </section>
+
 <!-- Autres éléments de votre template -->
 
 <div  *ngIf="isLoading" class="text-center my-3">

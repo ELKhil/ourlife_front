@@ -7,5 +7,7 @@ export interface Token{
         fullName:string,
         stars : number,
         id: number,
+        branch : string;
+        anacad : string;
 }
 

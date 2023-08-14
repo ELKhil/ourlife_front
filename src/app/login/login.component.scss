@@ -8,3 +8,14 @@ h3{
   font-style: italic;
   margin-bottom: 50px;
 }
+.card {
+  width: 500px;
+  margin: 0 auto;  /* pour centrer la card */
+}
+
+.rounded-image {
+  border-radius: 100%;
+  max-width: 100%;
+  height: auto;
+
+}

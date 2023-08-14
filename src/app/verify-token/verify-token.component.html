@@ -1,8 +1,14 @@
 
-<div class="validerEmail">
-    <p>Validez votre adresse email</p>
-    <button class="btn btn-success btn-block mb-4" (click)="validerEmail()">Valider</button>
+<div *ngIf="!messageReponse" class="d-flex justify-content-center align-items-center vh-80">
+  <div class="validerEmail bg-white p-4 rounded shadow">
+      <p class="text-center mb-4">Validez votre adresse email</p>
+      <div class="d-flex justify-content-center">
+          <button class="btn btn-success" (click)="validerEmail()">Valider</button>
+      </div>
+  </div>
 </div>
+
+
 
 
 <div *ngIf="isLoading" class="text-center my-3">
@@ -16,8 +22,9 @@
 
 
 
-
-<div *ngIf="messageReponse" classe="messageInfo">
-    <p>{{messageReponse}}</p>
+<div *ngIf="messageReponse && !isLoading"  class="card" style="width: 35rem;">
+  <img class="card-img-top" src="assets/images/marhaba.jpg" alt="Card image cap">
+  <div class="card-body">
+    <p class="card-text">{{messageReponse}}</p>
+  </div>
 </div>
-

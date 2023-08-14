@@ -5,6 +5,7 @@ import { UserForm } from '../Models/UserForm';
 import { PostsService } from '../Services/posts.service';
 import { SessionService } from '../Services/session.service';
 import { UserService } from '../Services/user.service';
+import { switchMap } from 'rxjs/operators';
 
 declare var toastr : any;
 
@@ -27,10 +28,16 @@ export class ShowUsersComponent implements OnInit {
 
   ngOnInit(): void {
       
-         this._userService.get().subscribe(data=> this.users = data );
-         this.session.isLogged.subscribe(loggedIn => {
-          this.isLogged = loggedIn;
-        });
+    this.session.isLogged.pipe(
+      switchMap(loggedIn => {
+        this.isLogged = loggedIn;
+        if (loggedIn) {
+          return this._userService.get();
+        }
+        return []; 
+      })
+    ).subscribe(data => this.users = data);
+
       }
   
 

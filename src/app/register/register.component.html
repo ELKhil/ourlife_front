@@ -1,45 +1,58 @@
+<div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <div class="d-flex justify-content-center">
+    <span class="h1 fw-bold mb-0">Chargement</span>
+    </div>
+    <div  class="text-center my-3">
+      <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  
 
-
-<section *ngIf="!messageInfo">
+<section *ngIf="!messageInfo && !isLoading">
   <div>
       <div class="container h-100">
-          <div style="padding: 15px; margin-bottom: 50px;margin-left: auto;margin-right: auto;">
-              <div style=" display: flex;justify-content: center;">
-                  <div class="card" style="border-radius: 15px;">
+          <div class="container mt-5 mb-5">
+              <div class="d-flex justify-content-center">
+                  <div class="card" style="border-radius: 15px; max-width: 600px;">
                       <div class="card-body p-5">
-                          <h2 style="font-style: italic;" class="text-uppercase text-center mb-2">Créer un compte</h2>
+                        <div class="d-flex justify-content-center">
+                          <span class="h2 fw-bold mb-0">Inscription</span>
+                      </div>
+                       
 
                           <form [formGroup]="fg" (ngSubmit)="submit()">
 
                               <!-- Champ Firstname -->
                               <div class="form-outline mb-2">
                                   <label class="required" for="firstname">Prénom<span class="text-danger">*</span></label>
-                                  <input type="text" id="firstname" class="form-control form-control-lg" formControlName="firstname" />
+                                  <input type="text" id="firstname" class="form-control " formControlName="firstname" placeholder="Entrez votre nom" />
                                   <div class="text-danger" *ngIf="fg.get('firstname')?.errors?.['required'] && fg.get('firstname')?.touched">Ce champ est requis</div>
                               </div>
 
                               <!-- Champ Lastname -->
                               <div class="form-outline mb-2">
                                   <label class="required" for="lastname">Nom<span class="text-danger">*</span></label>
-                                  <input type="text" id="lastname" class="form-control form-control-lg" formControlName="lastname" />
+                                  <input type="text" id="lastname" class="form-control " formControlName="lastname" placeholder="Entrez votre prénom"/>
                                   <div class="text-danger" *ngIf="fg.get('lastname')?.errors?.['required'] && fg.get('lastname')?.touched">Ce champ est requis</div>
                               </div>
 
                               <!-- Champ Email -->
                               <div class="form-outline mb-2">
                                   <label class="required" for="email">Email<span class="text-danger">*</span></label>
-                                  <input type="email" required id="email" class="form-control form-control-lg" formControlName="email" />
+                                  <input type="email" required id="email" class="form-control " formControlName="email" placeholder="Entrez votre email" />
                                   <div class="text-danger" *ngIf="fg.get('email')?.errors?.['required'] && fg.get('email')?.dirty">Ce champ est requis</div>
 
-                                 
-                                
-                                
                               </div>
 
                               <!-- Champ Confirme Email -->
                               <div class="form-outline mb-2">
                                   <label class="required" for="confirmEmail">Confirme Email<span class="text-danger">*</span></label>
-                                  <input type="email" required id="confirmEmail" class="form-control form-control-lg" formControlName="confirmEmail" />
+                                  <input type="email" required id="confirmEmail" class="form-control" formControlName="confirmEmail" placeholder="Confirmez votre email"/>
                                   <div class="text-danger" *ngIf="fg.get('confirmEmail')?.errors?.['required'] && fg.get('confirmEmail')?.touched">Ce champ est requis</div>
                                   <div class="text-danger" *ngIf="fg.get('email')?.errors?.['required'] && fg.get('email')?.dirty">Ce champ est requis</div>
                                   <div class="text-danger" *ngIf="fg.errors?.['emailsNotMatching'] && (fg.get('email')?.dirty || fg.get('confirmEmail')?.dirty)">
@@ -50,14 +63,14 @@
                               <!-- Champ Password -->
                               <div class="form-outline mb-2">
                                   <label class="required" for="password">Mot de passe<span class="text-danger">*</span></label>
-                                  <input type="password" required id="password" class="form-control form-control-lg" formControlName="password" />
+                                  <input type="password" required id="password" class="form-control" formControlName="password" placeholder="Mot de passe" />
                                   <div class="text-danger" *ngIf="fg.get('password')?.errors?.['required'] && fg.get('password')?.touched">Ce champ est requis</div>
                               </div>
 
                               <!-- Champ Confirme Password -->
                               <div class="form-outline mb-2">
                                   <label class="required" for="confirmPassword">Confirme mot de passe<span class="text-danger">*</span></label>
-                                  <input type="password" required id="confirmPassword" class="form-control form-control-lg" formControlName="confirmPassword"/>
+                                  <input type="password" required id="confirmPassword" class="form-control" formControlName="confirmPassword" placeholder="Confirmez"/>
                                   <div class="text-danger" *ngIf="fg.get('confirmPassword')?.errors?.['required'] && fg.get('confirmPassword')?.touched">Ce champ est requis</div>
                                   <div class="text-danger" *ngIf="fg.errors?.['notSamePassword'] && (fg.get('password')?.dirty || fg.get('confirmPassword')?.dirty)">
                                     Vos mots de passe ne sont pas identiques
@@ -65,11 +78,21 @@
                                 
                                 
                               </div>
+                               <!-- Select Branches -->
+                               <div class="form-outline mb-2">
+        
+                                <select id="branch" class="form-select" aria-label="Default select example" formControlName="branch">
+                                   <option [ngValue]="null">Choisir votre section d'étude</option>
+                                    <option *ngFor="let branch of branches" [value]="branch.id">{{branch.name}}</option>
+                                </select>
+                               </div>
+                            
+                              
 
                               <!-- Champ ImageProfil -->
                               <div class="form-outline mb-3">
                                   <label class="required" for="imageProfil">Photo de profil<span class="text-danger">*</span></label>
-                                  <input type="file" required id="imageProfil" (click)="onClick()" (change)="onChange($event)" class="form-control form-control-lg"/>
+                                  <input type="file" required id="imageProfil" (click)="onClick()" (change)="onChange($event)" class="form-control"/>
                                   <div class="text-danger" *ngIf="fg.get('imageProfil')?.errors?.['required'] && inputClicked">Le champ est requis</div>
                                   <div class="text-danger" *ngIf="fg.get('imageProfil')?.errors?.['imageBig']">L'image est très grande</div>
                                   <div class="text-danger" *ngIf="fg.get('imageProfil')?.errors?.['invalidMimeType']">Le type d'image n'est pas valide</div>
@@ -90,7 +113,10 @@
   
 </section>
 
-<div *ngIf="messageInfo" classe="messageInfo">
-        <p>{{messageInfo}}</p>
+<div *ngIf="messageInfo"  class="card" style="width: 25rem;">
+  <img class="card-img-top" src="assets/images/email.jpg" alt="Card image cap">
+  <div class="card-body">
+    <p class="card-text">{{messageInfo}}</p>
+  </div>
 </div>
 

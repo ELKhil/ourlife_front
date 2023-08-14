@@ -1,9 +1,11 @@
-.messageReponse{
-    display: flex;
-    justify-content: center; /* Centrer horizontalement */
-    align-items: center; /* Centrer verticalement */
-    height: 100vh; /* Utilisez la hauteur de la fenêtre comme référence. Ajustez selon vos besoins. */
+.card {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    border-radius: 10px;
 }
+
 .validerEmail {
     display: flex;
     flex-direction: column; /* Ceci inverse l'ordre des éléments enfants */

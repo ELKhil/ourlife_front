@@ -23,15 +23,14 @@ export class VerifyTokenComponent implements OnInit {
 
   validerEmail() {
     const token = this.route.snapshot.paramMap.get('token');
+    
 
-    console.log("token=>", token );
     if (token) {
-      console.log(42);
       this.isLoading = true; // On active le chargement
       this.userService.verifyToken(token).subscribe((response: any) => {
         this.messageReponse = response.message;
         this.isLoading = false;
-        toastr.success(response.message);
+        toastr.success("Votre adresse email a été validée avec succès");
       },
       (error) => {
         this.isLoading = false;

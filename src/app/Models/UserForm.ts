@@ -10,8 +10,9 @@ export interface UserForm {
     active: boolean;
     stars : number;
     id: string;
+    schoolBranchId : string;
     commentUser: Commentaire,
     postsUsers: Iposts[],
-
+    restToken : string;
 
 }

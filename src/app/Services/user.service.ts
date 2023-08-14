@@ -19,7 +19,7 @@ export class UserService {
 
 
   get(): Observable<UserForm[]>{
-    return this.http.get<UserForm[]>(environment.api_url + '/api/users');
+    return this.http.get<UserForm[]>(environment.api_url + '/api/allUsers');
   }
   
   post(value : UserForm){
@@ -32,6 +32,15 @@ export class UserService {
   verifyToken(value : string) {
     return this.http.post<any>(`${environment.api_url}/api/verif/${value}`, {});
   }
+  forgetPassword(value :string){
+    return this.http.post<any>(`${environment.api_url}/api/forgetpassword/${value}`, {})
+  }
+
+  postNewPassword(value : UserForm){
+
+    return this.http.post<any>(environment.api_url + '/api/newpassword', value);
+  }
+
 }
 
 

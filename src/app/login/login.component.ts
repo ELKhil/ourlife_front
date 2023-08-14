@@ -53,21 +53,15 @@ export class LoginComponent implements OnInit {
           // Redirection vers 'publication/posts'
           this.router.navigate(['publication/posts']);
       },
-      error: (err) => {
-          this.isLoading = false;
-          
-          // Utiliser une expression régulière pour extraire le message d'erreur
-          const regex = /<!-- (.*?) -->/;
-          const matches = err.error.match(regex);
-          
-          let errorMessage;
-          if (matches && matches[1]) {
-              errorMessage = matches[1];
-          } else {
-              errorMessage = 'La connexion a échoué ! Veuillez réessayer';
-          }
-  
-          toastr.error(errorMessage, 'Erreur', { timeOut: 5000 });
+      error: (error) => {
+        this.isLoading = false;
+        let errorMessage = error.error.message;
+
+        if (errorMessage === "Invalid credentials.") {
+            errorMessage = "Mot de passe ou email incorrect.";
+        }
+
+        toastr.error(errorMessage);
       }
   });
   

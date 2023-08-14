@@ -23,6 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccueilComponent } from './accueil/accueil.component';
 import { VerifyTokenComponent } from './verify-token/verify-token.component';
 import { PublicationComponent } from './publication/publication.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { PasswordverifComponent } from './passwordverif/passwordverif.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { PublicationComponent } from './publication/publication.component';
     AccueilComponent,
     VerifyTokenComponent,
     PublicationComponent,
+    ForgetPasswordComponent,
+    PasswordverifComponent,
     
     
   ],

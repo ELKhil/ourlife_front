@@ -3,6 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { UserService } from '../Services/user.service';
 import { UserForm } from '../Models/UserForm';
+import { SchoolBranch } from '../Models/SchoolBranch';
+import { SchoolBranchService } from '../Services/schoolBranch.service';
 
 declare var toastr: any;
 
@@ -16,14 +18,23 @@ export class RegisterComponent implements OnInit {
   inputClicked: boolean = false;
   fileSize: number = 0;
   messageInfo!: string;
+  isLoading: boolean = false;
+  branches: SchoolBranch[] = [];
 
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
-    public router: Router
+    public router: Router,
+    private branchService: SchoolBranchService,
   ) { }
 
   ngOnInit(): void {
+
+      this.branchService.get().subscribe((data: SchoolBranch[]) => {
+        this.branches = data;
+      });
+
+
     this.fg = this.fb.group({
       firstname: [null, [Validators.minLength(2), Validators.maxLength(30), Validators.required]],
       lastname: [null, [Validators.minLength(2), Validators.maxLength(30), Validators.required]],
@@ -31,24 +42,29 @@ export class RegisterComponent implements OnInit {
       confirmEmail: [null, [Validators.required, Validators.email]],
       password: [null, Validators.required],
       confirmPassword: [null, Validators.required],
-      imageProfil: [null, [Validators.required, this.checkFileSize.bind(this)]]
+      imageProfil: [null, [Validators.required, this.checkFileSize.bind(this)]],
+      branch: [null, Validators.required]
     }, { validators: [this.checkPassword, this.checkEmails] });
   }
 
   submit(): void {
+    this.isLoading = true;
     if (this.fg.valid) {
       this.userService.post(this.fg.value).subscribe((response: any) => {
         this.messageInfo = response.message;
         toastr.success("Veuiilez valider votre email ...");
         this.userService.active = true;
+        this.isLoading = false;
         
       },
       (error) => {
-        toastr.error("L'inscription a échoué..!!");
+        toastr.error(error.error.message);
+        this.isLoading = false;
       });
     } else {
       toastr.error("L'inscription a échoué..");
       this.fg.markAllAsTouched();
+      this.isLoading = false;
     }
   }
 

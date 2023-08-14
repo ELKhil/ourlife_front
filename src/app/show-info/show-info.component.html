@@ -13,11 +13,15 @@
             <div class="scroll-page2">
                 <ul *ngIf="isLogged" style="list-style-type:none; ">
                             <li style="color: rgb(6, 118, 6)">Connecté.e</li>
-                                <li>
-                            {{session.decodedToken.fullName}}
-                                </li>
-                                
-                                <li>{{session.decodedToken.role[0]}}</li>
+                                <li>{{session.decodedToken.fullName}}</li>
+                                <li *ngIf="!session.decodedToken.role.includes('ROLE_ADMIN') && !session.decodedToken.role.includes('ROLE_MODERATEUR')">Etudiant.e</li>
+                                <li *ngIf="session.decodedToken.role.includes('ROLE_MODERATEUR')">Etudiant.e - Modérateur·rice</li>
+                                <li *ngIf="session.decodedToken.role.includes('ROLE_ADMIN')">Admine</li>
+                                <li>{{session.decodedToken.branch}}</li>
+                                <li>{{session.decodedToken.anacad}}</li>
+                                <li>{{"Etoiles :" +session.decodedToken.stars}}</li>
+                                <li>{{session.decodedToken.email}}</li>
+
                 </ul>
                 
             </div>
