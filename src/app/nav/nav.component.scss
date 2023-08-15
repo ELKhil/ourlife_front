@@ -1,54 +1,95 @@
-.barNav{
+.barNav {
     width: 100%;
     position: fixed;
     z-index: 102;
 }
 
-#save{
-    background-color: rgb(190, 211, 211);
-     border-radius: 25px; 
-     font-size: 12px;
-}
-#save:hover{
-    background-color:rgb(230, 201, 105);
+.nav-link {
+    background-color: rgb(175, 188, 188);
+    border-radius: 25px;
+    margin-right: 8px;
+    font-size: 12px;
 }
 
-#log{
-    background-color: rgb(175, 188, 188);
-     border-radius: 25px;
-     margin-right: 8px;
-     font-size: 12px;
+.nav-link:hover {
+    background-color: rgb(230, 201, 105);
 }
-#log:hover{
-    background-color:rgb(230, 201, 105);
+
+#save {
+    background-color: rgb(190, 211, 211);
+    border-radius: 25px;
+    font-size: 12px;
 }
-#home{
-    border-radius: 50px; 
-    background-color: rgb(98, 157, 158);
+
+#save:hover {
+    background-color: rgb(230, 201, 105);
+}
+
+#home {
+    border-radius: 50px;
+    background-color: rgb(78, 149, 88);
     margin-right: 12px;
 }
-#home:hover{
-    background-color: rgb(96, 203, 224);
-    
+#seConnecter{
+    border-radius: 50px;
+    background-color: #15df26;
+    margin-right: 12px;
 }
-h4{
-    justify-content: center;
-     font-style: italic; 
-     font-weight: bold; color: rgb(230, 201, 105);
-     margin-right: 20px;
-     padding-top: 15px;
-     font-size: 35px;
+#seDeconnecter{
+    border-radius: 50px;
+    background-color: #FF4B2B;
+    margin-right: 12px;
+}
+#sinscrire{
+    border-radius: 50px;
+    background-color: #aed456;
+    margin-right: 12px;
+}
+#publication{
+    border-radius: 50px;
+    background-color: #2a9a39;
+    margin-right: 12px;
+}
+#boiteReception{
+    border-radius: 50px;
+    background-color: #55c075;
+    margin-right: 12px;
+}
+#classement{
+    border-radius: 50px;
+    background-color: #54df9e;
+    margin-right: 12px;
+}
+#soutenir{
+    border-radius: 50px;
+    background-color: #87e468;
+    margin-right: 12px;
+}
+#home:hover, #publication:hover, #boiteReception:hover, #soutenir:hover {
+    background-color:#FFBF00
+}
 
-    
+.navbar-title {
+    justify-content: center;
+    font-style: italic;
+    font-weight: bold;
+    color: rgb(230, 201, 105);
+    margin-right: 20px;
+    padding-top: 15px;
+    font-size: 35px;
 }
 
 .logo-circle {
     border-radius: 50%;
-    width: 40px; 
-    height: 49px; 
+    width: 40px;
+    height: 49px;
 }
+
+
 .second-logo {
-    width: 40px;  /* ou la taille que vous voulez */
-    height: 40px; /* ou la taille que vous voulez */
-    margin-right: 10px; /* un peu d'espace entre le logo et le texte */
-}
+        width: 24px;
+        height: 20px;
+    }
+    
+
+  

@@ -43,6 +43,7 @@ export class PostsComponent implements OnInit {
   result: string = "";
 
   isLogged: boolean = false;
+  isLoading: boolean = false;
 
   
 
@@ -70,7 +71,7 @@ export class PostsComponent implements OnInit {
       //this.postsService.getAllPosts().subscribe(data => this.posts = data);
 
       //Une méthode qui charge page par page
-      this.postsService.getPage(this.nbPage).subscribe(data => this.posts = data);
+      this.getAllPublications();
 
       this.session.isLogged.subscribe(loggedIn => {
       this.isLogged = loggedIn;
@@ -79,6 +80,9 @@ export class PostsComponent implements OnInit {
       
   }
 
+  getAllPublications(){
+    this.postsService.getPage(this.nbPage).subscribe(data => this.posts = data);
+  }
 
   //déclencheur de scroll
   onScroll(){
@@ -140,7 +144,7 @@ export class PostsComponent implements OnInit {
 
    //l'enregistrement d'un  nouveau commentaire
    submit(postId : string){
-
+    this.isLoading = true;
     if(this.ajoutComment !== null && this.ajoutComment !== "" && this.ajoutComment !== undefined){
       let commentaire : any = {
         userComImage: "",
@@ -153,10 +157,27 @@ export class PostsComponent implements OnInit {
       }
       
       //Envoie de message
-      this.comentService.post(commentaire).subscribe();
+      this.comentService.post(commentaire).subscribe((response: any) => {
+        toastr.success("Commentaire ajouté  ...");
+        console.log("reponse => ",response)
+        
+        this.loadComents.push(response);
+  
+        this.isLoading = false;
+      },
+      (error) => {
+        toastr.error(error.error.message);
+        this.isLoading = false;
+      });
+    } else {
+      toastr.error("Message non envoyé..");
+      this.isLoading = false;
+    }
+  
+      
    
       //Actualiser les messages
-      this.comentService.getMessages(Number(postId)).subscribe(data => this.loadComents = data);
+      //this.comentService.getMessages(Number(postId)).subscribe(data => this.loadComents = data);
       //this.postsService.getPage(this.nbPage).subscribe(data => this.posts = data);
       this.loadPostId = postId;
       this.ajoutComment="";
@@ -167,7 +188,7 @@ export class PostsComponent implements OnInit {
       
     }
  
-   }
+   
 
    postDelet(postId :string){
         console.log("supprimer ", postId); 
@@ -184,7 +205,7 @@ export class PostsComponent implements OnInit {
     messageDelet(messageId : string,postId :string ){
         this.comentService.delet(Number(messageId)).subscribe({
             next : (p) => {
-              toastr.success("Votre message a bien été supprimé");
+              toastr.success("Votre commentaire a bien été supprimé");
               this.comentService.getMessages(Number(postId)).subscribe(data => this.loadComents = data);
             }, error: () => {
               toastr.error("Something wrong");

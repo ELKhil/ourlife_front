@@ -29,8 +29,8 @@
               <!--  Message -->
               <div class="form-outline mb-5">
                 <label for="contenu" class="required">Message</label>
-                <textarea style="width: 150%;" required class="form-control form-control-lg" id="contenu" placeholder="Quoi de neuf...?" rows="4" formControlName="contenu"> </textarea>
-                <div class="text-danger" *ngIf="postForm.get('contenu')?.errors?.['required'] && postForm.get('contenu')?.touched">Ce champ est requis</div>
+                <textarea style="width: 150%;" class="form-control form-control-lg" id="contenu" placeholder="Quoi de neuf...?" rows="4" formControlName="contenu"> </textarea>
+                
 
                
               </div>
@@ -41,8 +41,8 @@
                 <input style="width: 140%;" type="file" id="media" (change)="onChange($event)" class="form-control form-control-lg"/>
                
               </div>
-              <!-- 2 column grid layout for inline styling -->
-              <div *ngIf="fileDown" class="row mb-5">
+              
+              <!-- <div *ngIf="fileDown" class="row mb-5">
                 <div class="col">
               <label for="typemedia">Type de media</label>
               <select class="form-control mt-2" id="typemedia" formControlName="typemedia">
@@ -50,11 +50,13 @@
                 <option  value="image">Image</option>
                 <option value="video">Video</option>
                
-              </select> 
-                </div>
-              </div>
+              </select>  
+              
+                </div></div> -->
+                <!--  -->
+              
   
-              <!-- Submit button -->
+            
               <div class="center-button">
                 <button class="btn btn-success btn-block mb-4">Poster</button>
              </div>

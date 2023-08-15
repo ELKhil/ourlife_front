@@ -1,44 +1,38 @@
-
 <div class="barNav">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-      <img src="assets/images/OurLifeLogo.png" alt="Logo" alt="Logo" class="navbar-brand logo-circle"> <!-- Cette ligne est pour le logo -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     
+    <img src="assets/images/OurLifeLogo.png" alt="Logo Our Life" class="navbar-brand logo-circle">
+      <button class="navbar-toggler" type="button" (click)="toggleNavbar()" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+      
+      <div class="collapse navbar-collapse" id="navbarText">
+          
+          <ul class="navbar-nav mr-auto d-flex align-items-center">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText" style="margin-left: 200px;">
-        <a class="btn btn-sm" routerLink="accueil" id="home"><i  class="fa fa-home"></i></a>
-          <ul class="navbar-nav mr-auto" >
-            
-            <li class="nav-item active"style="align-self: center;">
-              <a class="btn btn-sm " id="log"
-              routerLink="login" *ngIf="!isLogged">Se connecter</a>
-            </li>
-            <li class="nav-item active"style="align-self: center;">
-              <a class="btn btn-sm " id="log"
-              routerLink="login" *ngIf="isLogged" (click)="deconnecter()">Se deconnecter</a>
-            </li>
-
-            <li class="nav-item" style="align-self: center;">
-              <a id="save"class="btn btn-sm" *ngIf="!isLogged" routerLink="register">S'enregistrer</a>
-            </li>
-            <li class="nav-item active"style="align-self: center;">
-              <a class="btn btn-sm " id="log"
-              routerLink="/publication" *ngIf="isLogged" >Publication</a>
-            </li>
-        
-          </ul>
-          <div style="margin-left: 200px;"> 
-          </div>
+              <li class="nav-item">
+                <a class="btn btn-sm ml-5" routerLink="accueil" id="home"><i class="fa fa-home"></i> Accueil</a>
+              </li>
+              <li class="nav-item" *ngIf="!isLogged" id="seConnecter">
+                  <a class="btn btn-sm ml-5" routerLink="login"><i class="fa fa-sign-in"></i> Se connecter</a>
+              </li>
               
-        </div> 
-        <img src="assets/images/soutenir.png" alt="Second Logo" class="second-logo">
-        <h4>Our Life</h4>
-      </nav>
-
+              <li class="nav-item" *ngIf="!isLogged">
+                  <a class="btn btn-sm ml-5" routerLink="register" id="sinscrire"><i class="fa fa-registered"></i> S'enregistrer</a>
+              </li>
+              <li class="nav-item" *ngIf="isLogged">
+                  <a class="btn btn-sm ml-5" routerLink="/publication" id="publication"><i class="fa fa-file-image-o"></i> Mure de partage</a>
+              </li>
+              <li class="nav-item" *ngIf="isLogged">
+                <a class="btn btn-sm ml-5" routerLink="/publication" id="boiteReception"><i class="fa fa-envelope"></i> Boite de réception</a>
+            </li>
+              <li class="nav-item" *ngIf="isLogged">
+                <a class="btn btn-sm ml-5" routerLink="/publication" id="soutenir"><img src="assets/images/soutenir.png" alt="Soutenir Our Life" class="second-logo"> Soutenir le projet</a>
+            </li>
+              <li class="nav-item" *ngIf="isLogged">
+                  <a class="btn btn-sm ml-5" routerLink="login" (click)="deconnecter()" id="seDeconnecter"><i class="fa fa-sign-out"></i> Se deconnecter</a>
+              </li>
+          </ul>
+      </div> 
+  </nav>
 </div>
-
-
-
-
-

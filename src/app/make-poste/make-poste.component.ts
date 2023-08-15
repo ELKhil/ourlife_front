@@ -25,7 +25,7 @@ export class MakePosterComponent implements OnInit {
   ngOnInit(): void {
     this.postForm = this.fb.group({
       media: [null],
-      contenu: [null, Validators.required],
+      contenu: [null],
       typemedia: [null],
       userID:[this.session.decodedToken.id]
     })
@@ -59,6 +59,15 @@ export class MakePosterComponent implements OnInit {
 
   onChange($event: any) {
     let file = $event.target.files[0];
+        // Déterminer le type de média en fonction du type MIME
+    if (file.type.startsWith('image/')) {
+      this.postForm.get('typemedia')?.setValue('image');
+    } else if (file.type.startsWith('video/')) {
+      this.postForm.get('typemedia')?.setValue('video');
+    } else {
+      toastr.error("Type de fichier non pris en charge");
+      return; // Sortir si le type de fichier n'est ni une image ni une vidéo
+    }
 
     //Récupérer la taille et le type de fichier
     let reader = new FileReader();

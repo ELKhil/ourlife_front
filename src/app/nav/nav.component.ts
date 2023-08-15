@@ -21,4 +21,11 @@ export class NavComponent implements OnInit {
     this.session.clear();
   }
 
+  toggleNavbar() {
+    const navbar = document.getElementById('navbarText');
+    if (navbar) {
+      navbar.classList.toggle('show');
+    }
+  }
+
 }
