@@ -18,7 +18,7 @@ export class SchoolBranchService {
 
 
   get(): Observable<SchoolBranch[]>{
-    return this._http.get<SchoolBranch[]>(environment.api_url + '/api/schoolBranch/')
+    return this._http.get<SchoolBranch[]>(environment.api_url + '/api/schoolBranch')
   }
 
 
