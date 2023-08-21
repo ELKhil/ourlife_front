@@ -204,16 +204,31 @@ export class PostsComponent implements OnInit {
       });
     }
 
-    messageDelet(messageId : string,postId :string ){
-        this.comentService.delet(Number(messageId)).subscribe({
-            next : (p) => {
+    commentDelet(messageId : string, postId : string){
+      this.comentService.delet(Number(messageId)).subscribe({
+          next : (p) => {
               toastr.success("Votre commentaire a bien été supprimé");
-              this.comentService.getMessages(Number(postId)).subscribe(data => this.loadComents = data);
-            }, error: () => {
+  
+              // Trouvez le post correspondant dans this.posts
+              const postToUpdate = this.posts.find(p => p.id === postId);
+              if (postToUpdate && postToUpdate.commentaires) {
+                  // Trouvez l'index du commentaire correspondant dans le tableau des commentaires du post
+                  const indexToDelete = postToUpdate.commentaires.findIndex(comment => comment.id === messageId);
+                  if (indexToDelete !== -1) {
+                      // Supprimez ce commentaire du tableau
+                      postToUpdate.commentaires.splice(indexToDelete, 1);
+                  }
+              }
+  
+              // Vous pouvez également mettre à jour this.loadComents pour refléter les changements
+              this.loadComents = postToUpdate ? postToUpdate.commentaires : [];
+          }, 
+          error: () => {
               toastr.error("Something wrong");
-            }
-        });
+          }
+      });
     }
+  
 
     postsUser(username :string){
      
@@ -258,7 +273,7 @@ export class PostsComponent implements OnInit {
         this.result = dialogResult;
         console.log(this.result);
         if(this.result){
-          this.messageDelet(messageId, postId);
+          this.commentDelet(messageId, postId);
         }
       });
 

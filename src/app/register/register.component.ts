@@ -76,6 +76,7 @@ export class RegisterComponent implements OnInit {
       this.isLoading = false;
     });
   }
+  
   onChange($event: any): void {
     const file = $event.target.files[0];
     this.fileSize = file.size;
