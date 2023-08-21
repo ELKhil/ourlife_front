@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
       confirmEmail: [null, [Validators.required, Validators.email]],
       password: [null, Validators.required],
       confirmPassword: [null, Validators.required],
-      imageProfil: [null, [Validators.required, this.checkFileSize.bind(this)]],
+      imageProfil: [null, [this.checkFileSize.bind(this)]],
       branch: [null, Validators.required]
     }, { validators: [this.checkPassword, this.checkEmails] });
   }
@@ -50,6 +50,14 @@ export class RegisterComponent implements OnInit {
   submit(): void {
     this.isLoading = true;
     if (this.fg.valid) {
+
+      if (!this.fg.get('imageProfil')?.value) {
+        // Si l'utilisateur n'a pas chargé d'image, utilisez l'image par défaut
+        const defaultImage = "assets/images/utilisateur.png";
+        this.fg.get('imageProfil')?.setValue(defaultImage);
+       }
+
+
       this.userService.post(this.fg.value).subscribe((response: any) => {
         this.messageInfo = response.message;
         toastr.success("Veuiilez valider votre email ...");

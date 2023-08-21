@@ -93,7 +93,6 @@
                               <div class="form-outline mb-3">
                                   <label class="required" for="imageProfil">Photo de profil<span class="text-danger">*</span></label>
                                   <input type="file" required id="imageProfil" (click)="onClick()" (change)="onChange($event)" class="form-control"/>
-                                  <div class="text-danger" *ngIf="fg.get('imageProfil')?.errors?.['required'] && inputClicked">Le champ est requis</div>
                                   <div class="text-danger" *ngIf="fg.get('imageProfil')?.errors?.['imageBig']">L'image est très grande</div>
                                   <div class="text-danger" *ngIf="fg.get('imageProfil')?.errors?.['invalidMimeType']">Le type d'image n'est pas valide</div>
                               </div>
