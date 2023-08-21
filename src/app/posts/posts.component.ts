@@ -134,15 +134,24 @@ export class PostsComponent implements OnInit {
      
         this.comentService.post(commentaire).subscribe({
               next: (p) => { 
-                this.comentService.getMessages(Number(postId)).subscribe(data => this.loadComents = data);
-                toastr.success("Commentaire ajouté ...");
-                this.isLoading = false;
+                this.comentService.getMessages(Number(postId)).subscribe(data => {
+                  this.loadComents = data;
+                  
+                  // Mettez à jour le post actuel pour refléter le nouveau commentaire
+                  let currentPost = this.posts.find(p => p.id == postId); // Supposons que vous avez un tableau de posts avec le nom "posts"
+                  if (currentPost) {
+                      currentPost.commentaires.push(commentaire);
+                  }
 
-              },error: () => {
-                toastr.error("Something wrong");
-                this.isLoading = false;
-              }
+                  toastr.success("Commentaire ajouté ...");
+                  this.isLoading = false;
               });
+          },
+          error: () => {
+              toastr.error("Something wrong");
+              this.isLoading = false;
+          }
+      });
     } else {
       toastr.error("Erreur commentaire..");
       this.isLoading = false;
@@ -170,14 +179,29 @@ export class PostsComponent implements OnInit {
 
   commentDelet(messageId: string, postId: string) {
     this.comentService.delet(Number(messageId)).subscribe({
-      next: (p) => {
-        this.comentService.getMessages(Number(postId)).subscribe(data => this.loadComents = data);
-        toastr.success("Votre commentaire a bien été supprimé");
-      }, error: () => {
-        toastr.error("Something wrong");
-      }
+        next: (p) => {
+
+            // Mettez à jour le post actuel pour supprimer le commentaire
+            let currentPost = this.posts.find(p => p.id == postId); // Supposons que vous avez un tableau de posts avec le nom "posts"
+            if (currentPost) {
+                const commentIndex = currentPost.commentaires.findIndex(c => c.idMessage == messageId); // Je suppose que chaque commentaire a un attribut 'idMessage'
+                if (commentIndex !== -1) {
+                    currentPost.commentaires.splice(commentIndex, 1);
+                }
+            }
+
+            this.comentService.getMessages(Number(postId)).subscribe(data => {
+                this.loadComents = data;
+            });
+
+            toastr.success("Votre commentaire a bien été supprimé");
+        },
+        error: () => {
+            toastr.error("Something wrong");
+        }
     });
-  }
+}
+
 
 
   postsUser(username: string) {
