@@ -160,7 +160,7 @@
                                         style=" width: 32px; height: 32px; margin-right: 5px;" class="rounded-circle" alt="image¨Profil">
                                 </div>
                                 <div *ngIf="!isLoading" id="message" class="comment-input">
-                                    <input id="{{i}}" type="text" [(ngModel)]="ajoutComment[i]" class="form-control coment">
+                                    <input id="{{post.id}}" type="text" [(ngModel)]="ajoutComment[post.id]" class="form-control coment">
                                     <div class="fonts"> <a class="btn btn-sm" (click)="submit(post.id)" id="home"><i class="fa fa-envelope"></i></a></div>
                                 </div>
                                 <div *ngIf="isLoading" class="spinner-border m-5" role="status">

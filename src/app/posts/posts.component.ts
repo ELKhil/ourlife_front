@@ -1,19 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { resetFakeAsyncZone } from '@angular/core/testing';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Commentaire } from '../Models/Commentaire';
 import { Iposts } from '../Models/Iposts';
 import { ComentService } from '../Services/coment.service';
 import { PostsService } from '../Services/posts.service';
 import { SessionService } from '../Services/session.service';
-
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from '../confirm-dialog/confirm-dialog.component';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { environment } from 'src/environments/environment.prod';
+
 
 declare var toastr: any;
 
@@ -50,13 +46,10 @@ export class PostsComponent implements OnInit {
 
 
   constructor(
-    private fb: UntypedFormBuilder,
     private postsService: PostsService,
     private spinner: NgxSpinnerService,
-    private http: HttpClient,
     public session: SessionService,
     private comentService: ComentService,
-    private router: Router,
     public dialog: MatDialog,
   ) { this.loadComents = []; }
 
@@ -127,7 +120,7 @@ export class PostsComponent implements OnInit {
   //l'enregistrement d'un  nouveau commentaire
   submit(postId: string) {
     this.isLoading = true;
-
+    console.log(this.ajoutComment[postId])
     // Ceci vérifie que ajoutComment[postId] n'est pas null, undefined ou une chaîne vide
     if (this.ajoutComment[postId]) {  
       let commentaire: any = {
