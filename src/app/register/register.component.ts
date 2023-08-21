@@ -52,10 +52,8 @@ export class RegisterComponent implements OnInit {
     if (this.fg.valid) {
 
       if (!this.fg.get('imageProfil')?.value) {
-        // Si l'utilisateur n'a pas chargé d'image, utilisez l'image par défaut
-        const defaultImage = "assets/images/utilisateur.png";
-        this.fg.get('imageProfil')?.setValue(defaultImage);
-       }
+        this.readDefaultImageAsBase64();
+      }
 
 
       this.userService.post(this.fg.value).subscribe((response: any) => {
@@ -111,4 +109,21 @@ export class RegisterComponent implements OnInit {
     }
     return null;
   }
+
+
+  readDefaultImageAsBase64(): void {
+    // Chargez l'image à partir des ressources de l'application
+    const imgPath = 'assets/images/utilisateur.png';
+    fetch(imgPath)
+        .then(response => response.blob())
+        .then(blob => {
+            const reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = () => {
+                const base64data = reader.result;
+                this.fg.get('imageProfil')?.setValue(base64data);
+            }
+        });
+}
+
 }
