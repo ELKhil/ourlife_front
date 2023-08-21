@@ -117,11 +117,17 @@ export class PostsComponent implements OnInit {
 
    //montrer les commentaires
    showComment(postId : string){
-     this.showCommentaire = !this.showCommentaire;
-     this.comentService.getMessages(Number(postId)).subscribe(data => this.loadComents = data);
-     this.loadPostId = postId;
-   }
-
+    this.showCommentaire = !this.showCommentaire;
+  
+    // Demandez les commentaires pour le post spécifié
+    this.comentService.getMessages(Number(postId)).subscribe(data => {
+      // Une fois que vous recevez les données, mettez à jour loadComents et loadPostId
+      this.loadComents = data;
+      this.loadPostId = postId;
+    });
+  }
+  
+  
 
 
    //l'enregistrement d'un  nouveau commentaire
