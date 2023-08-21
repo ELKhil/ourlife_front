@@ -152,10 +152,9 @@ export class PostsComponent implements OnInit {
       this.isLoading = false;
     }
 
-    this.loadPostId = postId;
-    this.ajoutComment[postId] = "";  // mise à jour ici
+    //this.loadPostId = postId;
+    //this.ajoutComment[postId] = "";  // mise à jour ici
     this.showCommentaire = true;
-    this.loadComents = [];
 }
 
 
