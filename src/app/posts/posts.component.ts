@@ -32,7 +32,7 @@ export class PostsComponent implements OnInit {
   nbPage = 1;
   fileType : string = "";
   showCommentaire: boolean = false;
-  loadComents : any = null;
+  loadComents : any = [];
   loadPostId : string = "0";
   getPageUserScroll : boolean = false;
   userName! :string;
@@ -159,7 +159,7 @@ export class PostsComponent implements OnInit {
       //Envoie de message
       this.comentService.post(commentaire).subscribe((response: any) => {
         toastr.success("Commentaire ajouté  ...");
-        console.log("reponse => ",response)
+        console.log("commentaires => ",this.loadComents)
         
         this.loadComents.push(response);
   
