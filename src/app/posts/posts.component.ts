@@ -178,19 +178,26 @@ export class PostsComponent implements OnInit {
   }
 
   commentDelet(messageId: string, postId: string) {
+
+    console.log("idMessage", messageId)
     this.comentService.delet(Number(messageId)).subscribe({
         next: (p) => {
 
             // Mettez à jour le post actuel pour supprimer le commentaire
             let currentPost = this.posts.find(p => p.id == postId); // Supposons que vous avez un tableau de posts avec le nom "posts"
+            console.log("currentPost", currentPost)
+            console.log("currentPost.messages", currentPost?.commentaires)
+            
             if (currentPost) {
                 const commentIndex = currentPost.commentaires.findIndex(c => c.idMessage == messageId); // Je suppose que chaque commentaire a un attribut 'idMessage'
-                console.log("commentaire_index" ,commentIndex);
-                if(commentIndex !== -1) {
-                   console.log(42);
+                if (commentIndex !== -1) {
                     currentPost.commentaires.splice(commentIndex, 1);
                 }
             }
+
+            this.comentService.getMessages(Number(postId)).subscribe(data => {
+                this.loadComents = data;
+            });
 
             toastr.success("Votre commentaire a bien été supprimé");
         },
@@ -243,7 +250,6 @@ export class PostsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       this.result = dialogResult;
-      console.log(this.result);
       if (this.result) {
         this.commentDelet(messageId, postId);
       }
