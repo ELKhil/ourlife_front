@@ -120,7 +120,6 @@ export class PostsComponent implements OnInit {
   //l'enregistrement d'un  nouveau commentaire
   submit(postId: string) {
     this.isLoading = true;
-    console.log(this.ajoutComment[postId])
     // Ceci vérifie que ajoutComment[postId] n'est pas null, undefined ou une chaîne vide
     if (this.ajoutComment[postId]) {  
       let commentaire: any = {
@@ -132,29 +131,27 @@ export class PostsComponent implements OnInit {
       }
 
       // Envoie de message
-      this.comentService.post(commentaire).subscribe((response: any) => {
-        toastr.success("Commentaire ajouté ...");
+     
+        this.comentService.post(commentaire).subscribe({
+              next: (p) => { 
+                this.comentService.getMessages(Number(postId)).subscribe(data => this.loadComents = data);
+                toastr.success("Commentaire ajouté ...");
+                this.isLoading = false;
 
-        // Mise à jour de la liste des commentaires affichée à l'utilisateur
-        if (!this.loadComents) {
-          this.loadComents = [];
-        }
-        this.loadComents.push(response);
-        this.isLoading = false;
-      },
-        (error) => {
-          toastr.error(error.error.message);
-          this.isLoading = false;
-        });
-
+              },error: () => {
+                toastr.error("Something wrong");
+                this.isLoading = false;
+              }
+              });
     } else {
-      toastr.error("Message non envoyé..");
+      toastr.error("Erreur commentaire..");
       this.isLoading = false;
     }
-
-    //this.loadPostId = postId;
-    //this.ajoutComment[postId] = "";  // mise à jour ici
+     
     this.showCommentaire = true;
+    this.loadPostId = postId;
+    this.ajoutComment[postId] = "";  // mise à jour ici
+    
 }
 
 
@@ -174,8 +171,8 @@ export class PostsComponent implements OnInit {
   commentDelet(messageId: string, postId: string) {
     this.comentService.delet(Number(messageId)).subscribe({
       next: (p) => {
-        toastr.success("Votre commentaire a bien été supprimé");
         this.comentService.getMessages(Number(postId)).subscribe(data => this.loadComents = data);
+        toastr.success("Votre commentaire a bien été supprimé");
       }, error: () => {
         toastr.error("Something wrong");
       }
