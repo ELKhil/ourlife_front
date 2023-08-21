@@ -8,7 +8,7 @@ export class ToImagePipe implements PipeTransform {
 
   transform(value: unknown, ...args: unknown[]): unknown {
 
-    return environment.api_url+"/images/"+value;
+    return environment.image_url + value;
   }
 
 }

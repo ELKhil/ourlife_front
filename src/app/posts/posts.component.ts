@@ -160,7 +160,6 @@ export class PostsComponent implements OnInit {
       //Envoie de message
       this.comentService.post(commentaire).subscribe((response: any) => {
         toastr.success("Commentaire ajouté  ...");
-        console.log("commentaires => ",this.loadComents)
         
         if (!this.loadComents) {
           this.loadComents = [];
