@@ -32,7 +32,7 @@ export class PostsComponent implements OnInit {
   nbPage = 1;
   fileType : string = "";
   showCommentaire: boolean = false;
-  loadComents : any = [];
+  loadComents : any[] = [];
   loadPostId : string = "0";
   getPageUserScroll : boolean = false;
   userName! :string;
@@ -58,11 +58,12 @@ export class PostsComponent implements OnInit {
     private comentService :ComentService,
     private router : Router,
     public dialog: MatDialog,
+    
    
    
    
   
-  ) { }
+  ) {this.loadComents = []; }
 
 
   ngOnInit(): void {
@@ -161,6 +162,9 @@ export class PostsComponent implements OnInit {
         toastr.success("Commentaire ajouté  ...");
         console.log("commentaires => ",this.loadComents)
         
+        if (!this.loadComents) {
+          this.loadComents = [];
+        }
         this.loadComents.push(response);
   
         this.isLoading = false;
