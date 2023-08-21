@@ -114,25 +114,6 @@ export class PostsComponent implements OnInit {
       });
    };
 
-/*    loadNextPageUser(){
-    this.postsService.getPageUser(++this.nbPage,this.userName).subscribe((data: any) => {
-            this.nextPosts = data;
-            if(this.nextPosts.length !== 0){
-              //add the nextPots to the liste posts
-            this.posts = this.posts.concat(this.nextPosts);
-            this.notScrolly= true;
-            this.spinner.hide();
-            
-            }else{
-              this.notEmptyPost = false;
-              this.getPageUser = false;
-              this.spinner.hide();
-              this.nbPage=1;
-            }
-            
-    });
- };
- */
 
    //montrer les commentaires
    showComment(postId : string){
@@ -144,53 +125,54 @@ export class PostsComponent implements OnInit {
 
 
    //l'enregistrement d'un  nouveau commentaire
-   submit(postId : string){
+   submit(postId: string) {
     this.isLoading = true;
-    if(this.ajoutComment !== null && this.ajoutComment !== "" && this.ajoutComment !== undefined){
-      let commentaire : any = {
-        userComImage: "",
-        userComNom: "",
-        contenu : this.ajoutComment,
-        postId : Number (postId),
-        active : false,
-       
 
-      }
-      
-      //Envoie de message
-      this.comentService.post(commentaire).subscribe((response: any) => {
-        toastr.success("Commentaire ajouté  ...");
-        
-        if (!this.loadComents) {
-          this.loadComents = [];
+    if (this.ajoutComment) {  // Ceci vérifie que ajoutComment n'est pas null, undefined ou une chaîne vide
+        let commentaire: any = {
+            userComImage: "",
+            userComNom: "",
+            contenu: this.ajoutComment,
+            postId: Number(postId),
+            active: false,
         }
-        this.loadComents.push(response);
-        // Après avoir poussé le commentaire dans this.loadComents
-        const postToUpdate = this.posts.find(p => p.id === postId);
-          if (postToUpdate) {
-              if (!postToUpdate.commentaires) {
-                  postToUpdate.commentaires = [];
-              }
-              postToUpdate.commentaires.push(response);
-          }
 
-  
-        this.isLoading = false;
-      },
-      (error) => {
-        toastr.error(error.error.message);
-        this.isLoading = false;
-      });
+        // Envoie de message
+        this.comentService.post(commentaire).subscribe((response: any) => {
+            toastr.success("Commentaire ajouté ...");
+
+            // Mise à jour de la liste des commentaires affichée à l'utilisateur
+            if (!this.loadComents) {
+                this.loadComents = [];
+            }
+            this.loadComents.push(response);
+
+            // Si vous voulez également mettre à jour la liste des commentaires dans this.posts :
+            const postToUpdate = this.posts.find(p => p.id === postId);
+            if (postToUpdate) {
+                if (!postToUpdate.commentaires) {
+                    postToUpdate.commentaires = [];
+                }
+                postToUpdate.commentaires.push(response);
+            }
+
+            this.isLoading = false;
+        },
+        (error) => {
+            toastr.error(error.error.message);
+            this.isLoading = false;
+        });
+
     } else {
-      toastr.error("Message non envoyé..");
-      this.isLoading = false;
+        toastr.error("Message non envoyé..");
+        this.isLoading = false;
     }
-      this.loadPostId = postId;
-      this.ajoutComment="";
-      this.showCommentaire = true;
-    }
- 
-   
+
+    this.loadPostId = postId;
+    this.ajoutComment = "";
+    this.showCommentaire = true;
+}
+
 
    postDelet(postId :string){
         console.log("supprimer ", postId); 
