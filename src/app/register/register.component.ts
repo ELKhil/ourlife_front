@@ -50,23 +50,13 @@ export class RegisterComponent implements OnInit {
   submit(): void {
     this.isLoading = true;
     if (this.fg.valid) {
-
       if (!this.fg.get('imageProfil')?.value) {
-        this.readDefaultImageAsBase64();
+        this.readDefaultImageAsBase64().then(() => {
+          this.postUserForm();
+        });
+      } else {
+        this.postUserForm();
       }
-
-
-      this.userService.post(this.fg.value).subscribe((response: any) => {
-        this.messageInfo = response.message;
-        toastr.success("Veuiilez valider votre email ...");
-        this.userService.active = true;
-        this.isLoading = false;
-        
-      },
-      (error) => {
-        toastr.error(error.error.message);
-        this.isLoading = false;
-      });
     } else {
       toastr.error("L'inscription a échoué..");
       this.fg.markAllAsTouched();
@@ -74,6 +64,18 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+
+  postUserForm(): void {
+    this.userService.post(this.fg.value).subscribe((response: any) => {
+      this.messageInfo = response.message;
+      toastr.success("Veuillez valider votre email ...");
+      this.userService.active = true;
+      this.isLoading = false;
+    }, (error) => {
+      toastr.error(error.error.message);
+      this.isLoading = false;
+    });
+  }
   onChange($event: any): void {
     const file = $event.target.files[0];
     this.fileSize = file.size;
@@ -111,19 +113,23 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  readDefaultImageAsBase64(): void {
-    // Chargez l'image à partir des ressources de l'application
-    const imgPath = 'assets/images/utilisateur.png';
-    fetch(imgPath)
+  readDefaultImageAsBase64(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const imgPath = 'assets/images/utilisateur.png';
+      fetch(imgPath)
         .then(response => response.blob())
         .then(blob => {
-            const reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.onloadend = () => {
-                const base64data = reader.result;
-                this.fg.get('imageProfil')?.setValue(base64data);
-            }
+          const reader = new FileReader();
+          reader.readAsDataURL(blob);
+          reader.onloadend = () => {
+            const base64data = reader.result;
+            this.fg.get('imageProfil')?.setValue(base64data);
+            resolve(true);
+          }
+        })
+        .catch(error => {
+          reject(error);
         });
-}
-
+    });
+  }
 }
