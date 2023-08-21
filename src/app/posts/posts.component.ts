@@ -213,7 +213,7 @@ export class PostsComponent implements OnInit {
               const postToUpdate = this.posts.find(p => p.id === postId);
               if (postToUpdate && postToUpdate.commentaires) {
                   // Trouvez l'index du commentaire correspondant dans le tableau des commentaires du post
-                  const indexToDelete = postToUpdate.commentaires.findIndex(comment => comment.id === messageId);
+                  const indexToDelete = postToUpdate.commentaires.findIndex(comment => comment.idMessage === messageId);
                   if (indexToDelete !== -1) {
                       // Supprimez ce commentaire du tableau
                       postToUpdate.commentaires.splice(indexToDelete, 1);
