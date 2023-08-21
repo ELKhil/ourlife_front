@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CalculeTimePipe implements PipeTransform {
 
   transform(value: any, ...args: unknown[]): unknown {
-    if (!value) { return 'il y a longtemps'; }
+    if (!value) { return 'à l\'instant'; }
     let time = (Date.now() - Date.parse(value)) / 1000;
     if (time < 10) {
       return 'à l\'instant';
