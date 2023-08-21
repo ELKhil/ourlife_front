@@ -142,10 +142,10 @@ export class PostsComponent implements OnInit {
             toastr.success("Commentaire ajouté ...");
 
             // Mise à jour de la liste des commentaires affichée à l'utilisateur
-            if (!this.loadComents) {
+            /*if (!this.loadComents) {
                 this.loadComents = [];
             }
-            this.loadComents.push(response);
+            this.loadComents.push(response);*/
 
             // Si vous voulez également mettre à jour la liste des commentaires dans this.posts :
             const postToUpdate = this.posts.find(p => p.id === postId);
