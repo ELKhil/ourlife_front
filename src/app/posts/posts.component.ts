@@ -165,6 +165,15 @@ export class PostsComponent implements OnInit {
           this.loadComents = [];
         }
         this.loadComents.push(response);
+        // Après avoir poussé le commentaire dans this.loadComents
+        const postToUpdate = this.posts.find(p => p.id === postId);
+          if (postToUpdate) {
+              if (!postToUpdate.commentaires) {
+                  postToUpdate.commentaires = [];
+              }
+              postToUpdate.commentaires.push(response);
+          }
+
   
         this.isLoading = false;
       },
@@ -176,19 +185,9 @@ export class PostsComponent implements OnInit {
       toastr.error("Message non envoyé..");
       this.isLoading = false;
     }
-  
-      
-   
-      //Actualiser les messages
-      //this.comentService.getMessages(Number(postId)).subscribe(data => this.loadComents = data);
-      //this.postsService.getPage(this.nbPage).subscribe(data => this.posts = data);
       this.loadPostId = postId;
       this.ajoutComment="";
-    
       this.showCommentaire = true;
-      //location.reload();
-      
-      
     }
  
    

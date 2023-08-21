@@ -109,10 +109,10 @@
                             <hr>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex flex-row icons d-flex align-items-center"> </div>
-                                <div *ngIf="post. commentaires.length != 0">
+                                <div *ngIf="post.commentaires.length != 0">
                                      <div id="showComment" (click)="showComment(post.id)" class="d-flex flex-row muted-color showComment"> <span >{{post.commentaires.length}} comments</span> </div>
                                 </div>
-                                <div *ngIf="post. commentaires.length == 0">
+                                <div *ngIf="post.commentaires.length == 0">
                                     <div class="d-flex flex-row muted-color"> <span >{{post. commentaires.length}} comments</span> </div>
                                 </div>
                                
