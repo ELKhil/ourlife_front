@@ -185,14 +185,12 @@ export class PostsComponent implements OnInit {
             let currentPost = this.posts.find(p => p.id == postId); // Supposons que vous avez un tableau de posts avec le nom "posts"
             if (currentPost) {
                 const commentIndex = currentPost.commentaires.findIndex(c => c.idMessage == messageId); // Je suppose que chaque commentaire a un attribut 'idMessage'
-                if (commentIndex !== -1) {
+                console.log("commentaire_index" ,commentIndex);
+                if(commentIndex !== -1) {
+                   console.log(42);
                     currentPost.commentaires.splice(commentIndex, 1);
                 }
             }
-
-            this.comentService.getMessages(Number(postId)).subscribe(data => {
-                this.loadComents = data;
-            });
 
             toastr.success("Votre commentaire a bien été supprimé");
         },
