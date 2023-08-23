@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Commentaire } from '../Models/Commentaire';
+import { Donation } from '../Models/donation';
 
 
 @Injectable({
@@ -15,7 +14,7 @@ export class donationService {
   ) { }
 
 
-  post(value : string){
+  post(value : Donation){
     return this._http.post<any>(environment.api_url + '/api/donation', value);
   }
 
