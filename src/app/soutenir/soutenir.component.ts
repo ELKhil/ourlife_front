@@ -1,4 +1,8 @@
+import { donationService } from './../Services/donationService';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+
+declare var toastr : any;
 
 @Component({
   selector: 'app-soutenir',
@@ -6,8 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./soutenir.component.css']
 })
 export class SoutenirComponent implements OnInit {
+  donationForm! : FormGroup;
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private donationservice :  donationService,
+  ) { }
 
   // Dans votre composant
   donationAmount: number = 0;  // Affichage actuel
@@ -15,6 +23,9 @@ export class SoutenirComponent implements OnInit {
 
   ngOnInit() {
       this.startRandomAnimation();
+      this.donationForm = this.fb.group({
+        amount: [null],
+      })
   }
 
   startRandomAnimation() {
@@ -28,6 +39,21 @@ export class SoutenirComponent implements OnInit {
           this.donationAmount = this.finalAmount;  // Affiche le montant final
       }, 3000);  // Durée de l'animation avant d'afficher le montant final
   }
+
+  submit(){
+    if(this.donationForm.valid){
+        this.donationservice.post(this.donationForm.value).subscribe({
+          next : (p) => {
+            toastr.success("Votre poste a bien été enregistré");
+          }, error: () => {
+            toastr.error("Something wrong");
+          }
+        })
+    }else{
+      toastr.error("Veuillez entrer un montant.")
+    }
+  }
+
 }
 
 
