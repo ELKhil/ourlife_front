@@ -10,6 +10,8 @@ import { PublicationComponent } from './publication/publication.component';
 import { IsLoggedGuard } from './guards/is-logged.guard';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { PasswordverifComponent } from './passwordverif/passwordverif.component';
+import { SoutenirComponent } from './soutenir/soutenir.component';
+import { SucessDonationComponent } from './sucess-donation/sucess-donation.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' }, // Redirige par défaut vers l'accueil
@@ -17,8 +19,10 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent,canActivate: [IsLoggedGuard] },
   { path: 'forgetPassword', component: ForgetPasswordComponent},
+  { path: 'soutenir', component: SoutenirComponent},
+  { path : 'success', component: SucessDonationComponent},
   { path: 'verif/:token', component: VerifyTokenComponent},
-  {path : 'passwordverif/:token', component: PasswordverifComponent},
+  { path : 'passwordverif/:token', component: PasswordverifComponent},
   {
     path: 'publication',
     component: PublicationComponent,  //  un composant de wrapper pour les sous-routes

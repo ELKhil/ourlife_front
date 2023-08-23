@@ -1,0 +1,154 @@
+/* styles.css ou soutenir.component.css */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1.text-center {
+    border-bottom: 2px solid #e5e5e5;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.donation-summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;  /* taille de police définie ici */
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+}
+
+#donationTotal {
+    border: none;
+    background: none;
+    font-weight: bold;
+    width: 80px; 
+    text-align: right;
+    margin-right: 5px;
+    color: green;
+}
+
+#donationTotal:focus {
+    outline: none;
+}
+
+.currency-symbol {
+    /* Si nécessaire, définissez explicitement la taille ici aussi */
+    font-size: 1.5rem;
+    color: green;
+}
+
+
+#donationTotal {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 80px; /* ajustez selon vos besoins */
+    text-align: right;
+    margin-right: 5px; /* espace entre l'input et le symbole € */
+}
+
+#donationTotal:focus {
+    outline: none;
+}
+
+
+.table {
+
+    width: 40%;
+    border-radius: 10px;
+    overflow: hidden; /* cache tout ce qui dépasse de la table, ce qui inclut les bords des th et td */
+    background-color: white; /* ou toute autre couleur que vous préférez pour le fond de la table */
+}
+
+.table th, .table td {
+    border: none; /* enlever les bordures de chaque cellule */
+    padding: 10px 15px;
+}
+
+.divTable{
+    display: flex;
+    justify-content: center;
+}
+.arrows{
+    display: flex;
+    justify-content: center;
+}
+
+/* Si vous souhaitez enlever les bordures uniquement des <th> :
+.table th {
+    border: none;
+}
+*/
+
+
+
+/* ... (styles précédents) ... */
+
+.donation-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.info-message {
+    font-style: italic;
+    margin-top: 10px;
+    color: #666;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;  /* Espace entre les éléments */
+    margin-bottom: 20px; /* Espace sous le conteneur */
+}
+
+.round-image {
+    border-radius: 50%;  /* Rend l'image ronde */
+    width: 80px;  /* Ajustez selon votre préférence */
+    height: 80px; /* Ajustez selon votre préférence */
+    object-fit: cover;  /* Assure que l'image couvre la zone même si son format d'origine est différent */
+}
+.flex-container {
+    display: flex;
+    align-items: center; /* centre les éléments verticalement */
+    gap: 10px; /* espace entre l'input et le bouton */
+}
+
+.form-input {
+    width: 150px;  /* Ajustez cette valeur selon votre préférence */
+}
+

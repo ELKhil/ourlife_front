@@ -25,6 +25,8 @@ import { VerifyTokenComponent } from './verify-token/verify-token.component';
 import { PublicationComponent } from './publication/publication.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { PasswordverifComponent } from './passwordverif/passwordverif.component';
+import { SoutenirComponent } from './soutenir/soutenir.component';
+import { SucessDonationComponent } from './sucess-donation/sucess-donation.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { PasswordverifComponent } from './passwordverif/passwordverif.component'
     PublicationComponent,
     ForgetPasswordComponent,
     PasswordverifComponent,
+    SoutenirComponent,
+    SucessDonationComponent,
     
     
   ],

@@ -1,0 +1,83 @@
+<!-- soutenir.component.html -->
+
+<div class="container">
+    <div class="header-container">
+        <img src="assets/images/OurLifeLogo.png" alt="Description de l'image 1" class="round-image">
+        <h1 class="text-center">Soutenir le projet</h1>
+        <img src="assets/images/OurLifeLogo.png" alt="Description de l'image 2" class="round-image">
+    </div>
+    
+    <p>
+        Si vous êtes intéressé par le projet OurLife et que vous souhaitez le soutenir, vous pouvez contribuer en versant une somme d'argent.
+        Votre soutien financier nous permettra de développer et de maintenir le site web, d'améliorer les fonctionnalités et de garantir une expérience utilisateur optimale pour tous les étudiants qui l'utiliseront.
+        Nous sommes reconnaissants de tout soutien financier que vous pouvez apporter, quel que soit le montant. Chaque contribution compte et nous aidera à atteindre notre objectif de créer une communauté dynamique et solidaire pour les étudiants.
+        Nous vous remercions à l'avance pour votre soutien à notre projet OurLife.
+    </p>
+
+    <div class="donation-section">
+        <h2>Effectuer une donation</h2>
+        <form>
+            <div class="form-group flex-container">
+                <label for="amount">Introduire le montant que vous voulez verser:</label>
+                <input type="number" id="amount" name="amount" class="form-input" min="5" placeholder="20">
+                <button type="submit" class="btn btn-dark btn-m">Soutenir</button>
+            </div>
+            <div class="info-message">
+                Vous allez être dirigé vers une autre plateforme pour effectuer la transaction. Merci !
+            </div>
+        </form>
+    </div>
+    
+
+    <div class="donation-summary">
+        <label for="donationTotal">Total des dons : </label>
+        <input id="donationTotal" [(ngModel)]="donationAmount" readonly>
+        <span class="currency-symbol">€</span>
+    </div>
+    
+    
+    
+    <h3>Les 5 dernières donations :</h3>
+     <div class="arrows">
+            <span class="arrow-up">&#9650;</span>
+            <span class="arrow-down">&#9660;</span>
+        </div>
+    <div class="divTable">
+
+        <table class="table">
+            <tbody>
+                <!-- L'exemple suivant utilise des données statiques, vous pouvez les remplacer par des données dynamiques en utilisant *ngFor -->
+                <tr>
+                    <td>01/01/2023</td>
+                    <td>Jean Dupont</td>
+                    <td>100 €</td>
+                </tr>
+                <tr>
+                    <td>01/01/2023</td>
+                    <td>Saad Titi</td>
+                    <td>200 €</td>
+                </tr>
+                <tr>
+                    <td>01/01/2023</td>
+                    <td>Saad Titi</td>
+                    <td>200 €</td>
+                </tr>
+                <tr>
+                    <td>01/01/2023</td>
+                    <td>Saad Titi</td>
+                    <td>200 €</td>
+                </tr>
+                <tr>
+                    <td>01/01/2023</td>
+                    <td>Saad Titi</td>
+                    <td>200 €</td>
+                </tr>
+                <!-- Répétez les lignes ci-dessus pour les autres donateurs -->
+            </tbody>
+        </table>
+
+
+    </div>
+    
+    
+</div>

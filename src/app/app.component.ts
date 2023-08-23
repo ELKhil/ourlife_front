@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { SessionService } from './Services/session.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent, ConfirmDialogModel } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -21,9 +20,6 @@ export class AppComponent {
     public session: SessionService,
     private router: Router,
     public dialog: MatDialog,
-    private route: ActivatedRoute,
-  
- 
   ) {}
 
   confirmDialog(): void {
@@ -43,8 +39,6 @@ export class AppComponent {
 
 
   ngOnInit(): void {
-   // this.router.navigate(['/category']);  
-    //this.router.navigateByUrl('');
     this.session.isLogged.subscribe(loggedIn => {
       this.isLogged = loggedIn; 
     });
@@ -60,4 +54,10 @@ export class AppComponent {
     this.session.clear();
     this.router.navigate(['/login']);
   }
+
+  isPublicationPageOrChild(): boolean {
+    const currentUrl = this.router.url;
+    return currentUrl.startsWith('/publication');
+}
+
 }
