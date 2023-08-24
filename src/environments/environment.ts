@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  api_url:'https://api-ourlife-fc4625848857.herokuapp.com',
+  api_url:'http://localhost:8000',
   image_url : "https://res.cloudinary.com/hblnu5cl2/image/upload/v1/",
 };
 
-/*  'http://localhost:8000'*/
+/*  'https://api-ourlife-fc4625848857.herokuapp.com'*/
 
 /*  */
 

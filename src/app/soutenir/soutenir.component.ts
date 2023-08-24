@@ -11,6 +11,7 @@ declare var toastr : any;
 })
 export class SoutenirComponent implements OnInit {
   donationForm! : FormGroup;
+  donations! : any
 
   constructor(
     private fb: FormBuilder,
@@ -19,9 +20,15 @@ export class SoutenirComponent implements OnInit {
 
   // Dans votre composant
   donationAmount: number = 0;  // Affichage actuel
-  finalAmount: number = 1234;  // Montant final désiré
+  finalAmount: number  = 0;  // Montant final désiré
 
   ngOnInit() {
+    this.donationservice.get().subscribe((data: any) => {
+      this.donations = data.donations;
+      this.finalAmount = data.totalDonation;
+    });
+
+
       this.startRandomAnimation();
       this.donationForm = this.fb.group({
         amount: [null],

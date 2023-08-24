@@ -49,7 +49,7 @@ h1.text-center {
     background: none;
     font-size: 1.5rem;
     font-weight: bold;
-    width: 80px; /* ajustez selon vos besoins */
+    width: 100px; /* ajustez selon vos besoins */
     text-align: right;
     margin-right: 5px; /* espace entre l'input et le symbole € */
 }
@@ -61,7 +61,7 @@ h1.text-center {
 
 .table {
 
-    width: 40%;
+    width: 50%;
     border-radius: 10px;
     overflow: hidden; /* cache tout ce qui dépasse de la table, ce qui inclut les bords des th et td */
     background-color: white; /* ou toute autre couleur que vous préférez pour le fond de la table */
