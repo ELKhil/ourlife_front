@@ -86,7 +86,7 @@
                                 <img *ngIf="post.typemedia === 'image'" img [src]="post.media | toImage " width="100%" height="100%" class="img-fluid" alt="imagePost">
 
                                 <video *ngIf="post.typemedia === 'video'" width="100%" height="100%" controls>
-                                    <source img [src]="post.media | toImage">
+                                    <source img [src]="post.media | toVideo">
                                 </video>
                             </div>
 

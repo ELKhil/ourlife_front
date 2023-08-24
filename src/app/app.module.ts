@@ -27,6 +27,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { PasswordverifComponent } from './passwordverif/passwordverif.component';
 import { SoutenirComponent } from './soutenir/soutenir.component';
 import { SucessDonationComponent } from './sucess-donation/sucess-donation.component';
+import { ToVideoPipe } from './pipe/to-video.pipe';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SucessDonationComponent } from './sucess-donation/sucess-donation.compo
     MakePosterComponent,
     CalculeTimePipe,
     ToImagePipe,
+    ToVideoPipe,
     ConfirmDialogComponent,
     RegisterComponent,
     AccueilComponent,
