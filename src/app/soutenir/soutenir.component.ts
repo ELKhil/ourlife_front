@@ -43,16 +43,22 @@ export class SoutenirComponent implements OnInit {
   submit(){
     if(this.donationForm.valid){
         this.donationservice.post(this.donationForm.value).subscribe({
-          next : (p) => {
-            toastr.success("Votre poste a bien été enregistré");
-          }, error: () => {
-            toastr.error("Something wrong");
+          next : (response) => {
+            if (response && response.url) {
+                window.location.href = response.url;  // Redirection vers Stripe
+            } else {
+                toastr.error("Impossible de rediriger vers Stripe. URL manquante.");
+            }
+          },
+          error: () => {
+            toastr.error("Quelque chose s'est mal passé.");
           }
-        })
+        });
     }else{
-      toastr.error("Veuillez entrer un montant.")
+        toastr.error("Veuillez entrer un montant.");
     }
-  }
+}
+
 
 }
 
