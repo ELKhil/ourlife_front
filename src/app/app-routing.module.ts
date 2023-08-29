@@ -12,6 +12,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { PasswordverifComponent } from './passwordverif/passwordverif.component';
 import { SoutenirComponent } from './soutenir/soutenir.component';
 import { SucessDonationComponent } from './sucess-donation/sucess-donation.component';
+import { MessageComponent } from './message/message.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' }, // Redirige par défaut vers l'accueil
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent,canActivate: [IsLoggedGuard] },
   { path: 'forgetPassword', component: ForgetPasswordComponent},
   { path: 'soutenir', component: SoutenirComponent},
+  { path: 'message', component: MessageComponent},
   { path : 'success', component: SucessDonationComponent},
   { path: 'verif/:token', component: VerifyTokenComponent},
   { path : 'passwordverif/:token', component: PasswordverifComponent},

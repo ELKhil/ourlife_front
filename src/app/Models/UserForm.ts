@@ -9,10 +9,13 @@ export interface UserForm {
     imageProfil: string;
     active: boolean;
     stars : number;
-    id: string;
+    id: number;
     schoolBranchId : string;
     commentUser: Commentaire,
     postsUsers: Iposts[],
     restToken : string;
+    lastMessage : string;
+    lastMessageDate : Date;
+    unreadCount : number;
 
 }

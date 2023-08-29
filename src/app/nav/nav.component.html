@@ -21,11 +21,17 @@
                   <a class="btn btn-sm ml-5" routerLink="register" id="sinscrire"><i class="fa fa-registered"></i> S'enregistrer</a>
               </li>
               <li class="nav-item" *ngIf="isLogged">
-                  <a class="btn btn-sm ml-5" routerLink="/publication" id="publication"><i class="fa fa-file-image-o"></i> Mure de partage</a>
+                  <a class="btn btn-sm ml-5" routerLink="/publication" id="publication"><i class="fa fa-file-image-o"></i> Mur de partage</a>
               </li>
               <li class="nav-item" *ngIf="isLogged">
-                <a class="btn btn-sm ml-5" routerLink="/publication" id="boiteReception"><i class="fa fa-envelope"></i> Boite de réception</a>
+                <a class="btn btn-sm ml-5 position-relative" routerLink="/message" id="boiteReception">
+                    <i class="fa fa-envelope"></i> Boite de réception
+                    <span *ngIf="messageNotification" class="notification-badge">
+                        {{messageNotification}}
+                    </span>
+                </a>
             </li>
+            
               <li class="nav-item" *ngIf="isLogged">
                 <a class="btn btn-sm ml-5" routerLink="soutenir" id="soutenir"><img src="assets/images/soutenir.png" alt="Soutenir Our Life" class="second-logo"> Soutenir le projet</a>
             </li>

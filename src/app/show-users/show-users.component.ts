@@ -28,15 +28,15 @@ export class ShowUsersComponent implements OnInit {
 
   ngOnInit(): void {
       
-    this.session.isLogged.pipe(
-      switchMap(loggedIn => {
-        this.isLogged = loggedIn;
-        if (loggedIn) {
-          return this._userService.get();
-        }
-        return []; 
-      })
-    ).subscribe(data => this.users = data);
+        this.session.isLogged.pipe(
+          switchMap(loggedIn => {
+            this.isLogged = loggedIn;
+            if (loggedIn) {
+              return this._userService.get();
+            }
+            return []; 
+          })
+        ).subscribe(data => this.users = data);
 
       }
   

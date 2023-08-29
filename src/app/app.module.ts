@@ -28,6 +28,7 @@ import { PasswordverifComponent } from './passwordverif/passwordverif.component'
 import { SoutenirComponent } from './soutenir/soutenir.component';
 import { SucessDonationComponent } from './sucess-donation/sucess-donation.component';
 import { ToVideoPipe } from './pipe/to-video.pipe';
+import { MessageComponent } from './message/message.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ToVideoPipe } from './pipe/to-video.pipe';
     PasswordverifComponent,
     SoutenirComponent,
     SucessDonationComponent,
+    MessageComponent,
     
     
   ],

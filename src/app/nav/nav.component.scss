@@ -91,5 +91,17 @@
         height: 20px;
     }
     
-
+.notification-badge {
+        position: absolute;
+        top: -9px;
+        right: 5px; /* Diminuez ou ajustez cette valeur selon vos préférences */
+        padding: 2px 5px; /* Réduisez le padding pour un cercle plus petit */
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+        font-weight: bold;
+        font-size: 10px; /* Pour un texte un peu plus petit dans le cercle */
+    }
+    
+    
   

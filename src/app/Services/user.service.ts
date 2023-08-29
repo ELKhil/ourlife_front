@@ -21,6 +21,10 @@ export class UserService {
   get(): Observable<UserForm[]>{
     return this.http.get<UserForm[]>(environment.api_url + '/api/allUsers');
   }
+
+  getUsersWithMessage(): Observable<UserForm[]>{
+    return this.http.get<UserForm[]>(environment.api_url + '/api/allUsersWithMessage');
+  }
   
   post(value : UserForm){
     return this.http.post<any>(environment.api_url + '/api/user', value);
@@ -39,6 +43,10 @@ export class UserService {
   postNewPassword(value : UserForm){
 
     return this.http.post<any>(environment.api_url + '/api/newpassword', value);
+  }
+
+  getMessageNotification(): Observable<any>{
+    return this.http.get<any>(environment.api_url + '/api/messageNotification');
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../Services/session.service';
+import { UserService } from '../Services/user.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,13 +9,20 @@ import { SessionService } from '../Services/session.service';
 })
 export class NavComponent implements OnInit {
   isLogged: boolean = false;
+  messageNotification : number = 0
 
-  constructor(public session: SessionService) { }
+  constructor(public session: SessionService, private _userService : UserService,) { }
 
   ngOnInit(): void {
     this.session.isLogged.subscribe(loggedIn => {
       this.isLogged = loggedIn;
     });
+
+    this._userService.getMessageNotification().subscribe(
+      data => this.messageNotification = data
+    )
+
+
   }
 
   deconnecter(){
