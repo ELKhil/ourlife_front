@@ -15,15 +15,16 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.session.isLogged.subscribe(loggedIn => {
-      this.isLogged = loggedIn;
+        this.isLogged = loggedIn;
+
+        if (this.isLogged) {
+            this._userService.getMessageNotification().subscribe(
+                data => { this.messageNotification = data; }
+            );
+        }
     });
+}
 
-    this._userService.getMessageNotification().subscribe(
-      data => this.messageNotification = data
-    )
-
-
-  }
 
   deconnecter(){
     this.session.clear();
