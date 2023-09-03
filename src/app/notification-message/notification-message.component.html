@@ -1,12 +1,12 @@
 
-    <div class=" row border-bottom padding-sm" style="height: 40px;">
-        
+    <div class="header row border-bottom padding-sm">
+        Boîte de réception
     </div>
     
     <!-- =============================================================== -->
     <!-- member list -->
     <ul *ngFor="let user of users;" class="friend-list">
-        <li class="active bounceInDown">
+        <li class="active bounceInDown" [class.selected]="user.id === selectedUserId" (click)="selectUser(user.id)">
             <a [routerLink]="['/messageDetails', user.id]" class="clearfix">
                 <img [src]="user.imageProfil | toImage" alt="imageProfil" class="img-circle">
                 <div class="friend-name">	

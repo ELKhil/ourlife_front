@@ -4,6 +4,8 @@ import { UserForm } from '../Models/UserForm';
 import { SessionService } from '../Services/session.service';
 import { UserService } from '../Services/user.service';
 import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -13,13 +15,24 @@ import { switchMap } from 'rxjs/operators';
 })
 export class NotificationMessageComponent implements OnInit {
 
+  selectedUserId: number | null = null;
   users : UserForm [] =[];
   isLogged: boolean = false;
+  private sub!: Subscription;
 
   constructor(private _userService : UserService, public session: SessionService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService,
+    private route: ActivatedRoute) { }
 
     ngOnInit(): void {
+
+      this.sub = this.route.paramMap.subscribe(params => {
+        const id = params.get('id');
+        if (id) {
+          this.selectUser(parseInt(id));
+        }
+      });
+
       this.session.isLogged.pipe(
         switchMap(loggedIn => {
           this.isLogged = loggedIn;
@@ -46,6 +59,10 @@ export class NotificationMessageComponent implements OnInit {
           user.unreadCount = update.unreadCount;
         }
       });
+    }
+
+    selectUser(id: number): void {
+      this.selectedUserId = id;
     }
     
 }

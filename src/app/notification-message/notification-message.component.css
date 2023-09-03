@@ -42,12 +42,17 @@ body {
 .friend-list li.active a {
     background-color: #f1f5fc;
     text-decoration: none;
+    border-radius: 2%;
 }
 
-.friend-list li a .friend-name,
-.friend-list li a .friend-name:hover {
-    color: #777;
+
+
+
+/* Par celle-ci */
+.friend-list li.active a:hover {
+    background-color: #f4dd4d; /* nouvelle couleur de fond lors du survol */
 }
+
 
 .friend-list li a .last-message {
     width: 65%;
@@ -183,7 +188,7 @@ img {
     bottom: 0;
     left: 444px;
     right: 0;
-  */
+    */
     padding: 15px;
     border-top: 1px solid #eee;
     transition: all .5s ease;
@@ -202,4 +207,21 @@ a:active,
 a:focus {
     text-decoration: none;
     outline: 0;
+   
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f7f7;
+    margin-bottom: 10px;
+    height: 50px; /* Augmentation de la hauteur */
+    font-size: 20px; /* Augmentation de la taille du texte */
+    font-weight: bold;
+    font-style: italic; /* Texte en gras pour le faire ressortir */
+    border-bottom: 3px solid #d0d0d0; 
+    border-radius: 5%;
+}
+.friend-list li.selected a {
+    background-color: #f4dd4d;  /* La couleur que vous souhaitez avoir lorsqu'un élément est sélectionné */
 }
