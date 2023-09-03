@@ -19,7 +19,7 @@ export class CalculeTimePipe implements PipeTransform {
     for (i = 0; Math.floor(time / divider[i]) > 0; i++) {
       time /= divider[i];
     }
-    const plural = Math.floor(time) > 1 ? 's' : '';
+    const plural = (Math.floor(time) > 1 && i !== 4) ? 's' : ''; // Pas de 's' pour "mois"
     return 'il y a ' + Math.floor(time) + string[i] + plural;
   }
 
