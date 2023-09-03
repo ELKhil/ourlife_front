@@ -19,11 +19,14 @@ export class MessagesService {
   ) { }
 
 
-  get(value: number): Observable<Message[]> {
-    return this.http.get<Message []>(`${environment.api_url}/api/messages/${value}`);
+  get(value: number): Observable<any> {
+    return this.http.get<any>(`${environment.api_url}/api/messages/${value}`);
     }
 
-
+    
+    post(value : any){
+      return this.http.post<any>(environment.api_url + '/api/message', value);
+    }
  
 
 }

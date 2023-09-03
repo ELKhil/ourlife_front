@@ -10,7 +10,7 @@
             <a [routerLink]="['/messageDetails', user.id]" class="clearfix">
                 <img [src]="user.imageProfil | toImage" alt="imageProfil" class="img-circle">
                 <div class="friend-name">	
-                    <strong>{{user.firstname}}</strong>
+                    <strong>{{user.firstname +" " + user.lastname}}</strong>
                 </div>
                 <div class="last-message text-muted">{{user.lastMessage}}</div>
                 <small *ngIf="user.lastMessageDate" class="time text-muted">{{user.lastMessageDate | calculeTime}}</small>

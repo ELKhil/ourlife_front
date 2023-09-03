@@ -9,9 +9,9 @@ export const environment = {
   video_url : "https://res.cloudinary.com/hblnu5cl2/video/upload/f_auto:video,q_auto/"
 };
 
-/*  */
+/* http://localhost:8000 */
 
-/*  http://localhost:8000*/
+/*  */
 
 
 /*
