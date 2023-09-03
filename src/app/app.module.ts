@@ -29,6 +29,8 @@ import { SoutenirComponent } from './soutenir/soutenir.component';
 import { SucessDonationComponent } from './sucess-donation/sucess-donation.component';
 import { ToVideoPipe } from './pipe/to-video.pipe';
 import { MessageComponent } from './message/message.component';
+import { NotificationMessageComponent } from './notification-message/notification-message.component';
+import { MessageDetailsComponent } from './message-details/message-details.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { MessageComponent } from './message/message.component';
     SoutenirComponent,
     SucessDonationComponent,
     MessageComponent,
+    NotificationMessageComponent,
+    MessageDetailsComponent,
     
     
   ],

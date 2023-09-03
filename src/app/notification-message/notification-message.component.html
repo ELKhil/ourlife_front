@@ -1,0 +1,24 @@
+
+    <div class=" row border-bottom padding-sm" style="height: 40px;">
+        
+    </div>
+    
+    <!-- =============================================================== -->
+    <!-- member list -->
+    <ul *ngFor="let user of users;" class="friend-list">
+        <li class="active bounceInDown">
+            <a [routerLink]="['/messageDetails', user.id]" class="clearfix">
+                <img [src]="user.imageProfil | toImage" alt="imageProfil" class="img-circle">
+                <div class="friend-name">	
+                    <strong>{{user.firstname}}</strong>
+                </div>
+                <div class="last-message text-muted">{{user.lastMessage}}</div>
+                <small *ngIf="user.lastMessageDate" class="time text-muted">{{user.lastMessageDate | calculeTime}}</small>
+                <small *ngIf="user.unreadCount !== 0" class="chat-alert label label-danger">{{user.unreadCount}}</small>
+
+            </a>
+        </li>           
+    </ul>
+
+    
+

@@ -1,3 +1,5 @@
+import { MessageDetailsComponent } from './message-details/message-details.component';
+import { NotificationMessageComponent } from './notification-message/notification-message.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PostsComponent } from './posts/posts.component';
@@ -21,10 +23,13 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent,canActivate: [IsLoggedGuard] },
   { path: 'forgetPassword', component: ForgetPasswordComponent},
   { path: 'soutenir', component: SoutenirComponent},
-  { path: 'message', component: MessageComponent},
+  
   { path : 'success', component: SucessDonationComponent},
   { path: 'verif/:token', component: VerifyTokenComponent},
   { path : 'passwordverif/:token', component: PasswordverifComponent},
+  { path: 'message',component: NotificationMessageComponent},
+  {path : 'messageDetails/:id', component : MessageDetailsComponent},
+
   {
     path: 'publication',
     component: PublicationComponent,  //  un composant de wrapper pour les sous-routes
