@@ -147,6 +147,9 @@ export class ProfilComponent implements OnInit {
   ChangeImageProfil(): void {
     this._userService.postChangeImage(this.fg.value).subscribe((response: any) => {
       toastr.success("L'image de votre profil a bien été modifiée");
+      if (response.imageId) {
+        this.session.decodedToken.imageProfil = response.imageId;
+    }
       this._userService.active = true;
     }, (error) => {
       toastr.error(error.error.message);
