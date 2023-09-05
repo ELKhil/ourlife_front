@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { SessionService } from '../Services/session.service';
 import { UserService } from '../Services/user.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -24,7 +24,8 @@ export class ProfilComponent implements OnInit {
   constructor(public session: SessionService,
               private _userService : UserService,
               public dialog: MatDialog,
-              private fb: FormBuilder,) { }
+              private fb: FormBuilder,
+              private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.session.isLogged.subscribe(loggedin => {
@@ -149,6 +150,7 @@ export class ProfilComponent implements OnInit {
       toastr.success("L'image de votre profil a bien été modifiée");
       if (response.imageId) {
         this.session.decodedToken.imageProfil = response.imageId;
+        this.changeDetector.detectChanges();
     }
       this._userService.active = true;
     }, (error) => {
