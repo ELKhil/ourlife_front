@@ -1,0 +1,29 @@
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 20px;
+}
+  
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 80%; /* Commencez avec une largeur relative */
+  max-width: 400px; /* Mais ne dépassez pas 400px */
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Pour les écrans dont la largeur est inférieure à 600px (par exemple) */
+@media (max-width: 600px) {
+  .modal-content {
+    width: 95%; /* Vous pouvez augmenter la largeur pour les petits écrans */
+    padding: 15px; /* Réduisez le padding si nécessaire */
+  }
+}

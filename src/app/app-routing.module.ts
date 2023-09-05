@@ -16,6 +16,8 @@ import { SoutenirComponent } from './soutenir/soutenir.component';
 import { SucessDonationComponent } from './sucess-donation/sucess-donation.component';
 import { MessageComponent } from './message/message.component';
 import { ProfilComponent } from './profil/profil.component';
+import { TermsComponent } from './terms/terms.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' }, // Redirige par défaut vers l'accueil
@@ -25,6 +27,8 @@ const routes: Routes = [
   { path: 'forgetPassword', component: ForgetPasswordComponent},
   { path: 'soutenir', component: SoutenirComponent},
   { path: 'profil' , component: ProfilComponent},
+  { path: 'terms', component: TermsComponent },
+  { path: 'privacy', component: PrivacyComponent },
   
   { path : 'success', component: SucessDonationComponent},
   { path: 'verif/:token', component: VerifyTokenComponent},

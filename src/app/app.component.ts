@@ -39,15 +39,17 @@ export class AppComponent {
 
 
   ngOnInit(): void {
-    this.session.isLogged.subscribe(loggedIn => {
-      this.isLogged = loggedIn; 
-    });
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-          this.isHomePage = event.urlAfterRedirects === '/accueil';
+            this.session.isLogged.subscribe(loggedIn => {
+              this.isLogged = loggedIn; 
+            });
+            this.router.events.subscribe(event => {
+              if (event instanceof NavigationEnd) {
+                  this.isHomePage = event.urlAfterRedirects === '/accueil';
 
-      }
-  });
+              }
+          });
+
+          
   }
 
   logout() {

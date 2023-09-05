@@ -32,6 +32,9 @@ import { MessageComponent } from './message/message.component';
 import { NotificationMessageComponent } from './notification-message/notification-message.component';
 import { MessageDetailsComponent } from './message-details/message-details.component';
 import { ProfilComponent } from './profil/profil.component';
+import { AcceptTermsModalComponent } from './accept-terms-modal/accept-terms-modal.component';
+import { TermsComponent } from './terms/terms.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +62,9 @@ import { ProfilComponent } from './profil/profil.component';
     NotificationMessageComponent,
     MessageDetailsComponent,
     ProfilComponent,
+    AcceptTermsModalComponent,
+    TermsComponent,
+    PrivacyComponent,
     
     
   ],

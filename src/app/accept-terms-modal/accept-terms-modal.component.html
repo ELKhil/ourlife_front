@@ -1,0 +1,19 @@
+<div *ngIf="showModal" class="modal-background">
+    <div class="modal-content">
+      <h2>Acceptez-vous nos termes et conditions?</h2>
+
+      <p>Pour offrir les meilleures expériences, nous utilisons des technologies telles
+         que les cookies pour stocker et/ou accéder aux informations des appareils.
+          Le fait de consentir à ces technologies nous permettra de traiter des données
+           telles que le comportement de navigation. Le fait de ne pas consentir 
+        ou de retirer son consentement peut avoir un effet négatif sur certaines caractéristiques et fonctions.</p>
+        <p>
+            Lisez nos
+             <a href="#" (click)="handleLinkClick($event, '/terms')">conditions générales</a> 
+            et notre <a href="#" (click)="handleLinkClick($event, '/privacy')">politique de cookies</a>.
+          </p>
+          
+      <button type="button" class="btn btn-success btn-sm mb-2" (click)="acceptTerms()">Accepter</button>
+      <button type="button" class="btn btn-danger btn-sm" (click)="declineTerms()">Refuser</button>
+    </div>
+  </div>

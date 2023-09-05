@@ -1,21 +1,51 @@
-body{
-  margin-left: 40px;
-  margin-right: 40px;
-  width: 100vh;
+body {
+  margin-left: 2%;  /* Pourcentage plutôt que pixels pour une meilleure adaptabilité */
+  margin-right: 2%;
+  width: 100%;  /* width à 100% plutôt que 100vh, car vh est une unité de hauteur */
 }
 
-h3{
+h3 {
   font-style: italic;
   margin-bottom: 50px;
 }
+
 .card {
-  width: 500px;
-  margin: 0 auto;  /* pour centrer la card */
+  max-width: 500px;  /* max-width pour qu'il s'adapte aux écrans plus petits */
+  width: 100%;  /* Largeur à 100% pour occuper tout l'espace disponible */
+  margin: 0 auto;
 }
 
 .rounded-image {
   border-radius: 100%;
   max-width: 100%;
   height: auto;
-
 }
+
+/* Pour les écrans dont la largeur est inférieure à 600px */
+@media (max-width: 600px) {
+  body {
+    margin-left: 5px;  /* Des marges minimales pour donner un peu d'espace */
+    margin-right: 5px;
+  }
+
+  h3 {
+    margin-bottom: 20px;
+  }
+
+  .card {
+    max-width: 100%;  /* Laissez la carte utiliser toute la largeur disponible */
+    margin: 10px auto; /* Un peu de marge autour de la carte pour respirer */
+  }
+
+  .form-outline {
+    padding-left: 10px;  /* Petit padding pour que les champs de formulaire ne touchent pas les bords */
+    padding-right: 10px;
+  }
+
+  .rounded-image {
+    width: 60%; /* Réduire la taille de l'image pour s'assurer qu'elle s'adapte bien */
+    margin: 0 auto; /* Centrer l'image */
+  }
+}
+
+
