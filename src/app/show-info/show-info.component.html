@@ -3,28 +3,20 @@
 <body *ngIf="isLogged">
     <div class="body1">
             <div *ngIf="session.isLogged" class="scroll-page1">
-                <img [src]="session.decodedToken.imageProfil | toImage" alt="imageProfil">
+                <a routerLink="/profil"><img [src]="session.decodedToken.imageProfil | toImage" alt="imageProfil"></a>
             </div>
             <div *ngIf="!isLogged" class="scroll-page1">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/1200px-OOjs_UI_icon_userAvatar.svg.png"alt="photo profil">
             </div>
-
-            
             <div class="scroll-page2">
                 <ul *ngIf="isLogged" style="list-style-type:none; ">
                             <li style="color: rgb(6, 118, 6)">Connecté.e</li>
                                 <li>{{session.decodedToken.fullName}}</li>
                                 <li *ngIf="!session.decodedToken.role.includes('ROLE_ADMIN') && !session.decodedToken.role.includes('ROLE_MODERATEUR')">Etudiant.e</li>
                                 <li *ngIf="session.decodedToken.role.includes('ROLE_MODERATEUR')">Etudiant.e - Modérateur·rice</li>
-                                <li *ngIf="session.decodedToken.role.includes('ROLE_ADMIN')">Admine</li>
-                                <li>{{session.decodedToken.branch}}</li>
-                                <li>{{session.decodedToken.anacad}}</li>
-                                <li>{{"Etoiles :" +session.decodedToken.stars}}</li>
-                                <li>{{session.decodedToken.email}}</li>
+                                <li *ngIf="session.decodedToken.role.includes('ROLE_ADMIN')">Administrateur.rice</li>
                 </ul>
-                
             </div>
-            
     </div>
 
 

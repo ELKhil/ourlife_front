@@ -1,0 +1,113 @@
+<section class="mt-4" *ngIf="isLogged" style="background-color: #eee;">
+    <div class="container py-4">
+        <div class="row">
+            <div class="text-center">
+                <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 pb-2 mb-2">
+                    <h1>Mon profil</h1>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-lg-4.5">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img [src]="session.decodedToken.imageProfil | toImage" alt="avatar"
+                            class="rounded-circle img-fluid" style="width: 150px;">
+                        <h5 class="my-2">{{session.decodedToken.fullName}}</h5>
+                        <p class="text-muted mb-4">Etudiant.e</p>
+                        <button type="button" class="btn btn-danger btn-sm"
+                        (click)="confirmDialogUser(session.decodedToken.email)">Supprimer le compte</button>
+                
+                        <span style="display: inline-block; width: 20px;"></span>
+                        
+                        <button type="button" class="btn btn-secondary btn-sm" (click)="toggleForm()">Changer image</button>
+                
+                        
+
+                        
+
+                        <div class="d-flex justify-content-center mb-2">
+                            <div>
+                                
+                        
+                                <form *ngIf="showForm" [formGroup]="fg" (ngSubmit)="submit()" class="mt-3">
+                                    <label for="imageProfil">Modifier image profil</label>
+                                    <input type="file" 
+                                           required 
+                                           id="imageProfil" 
+                                           (click)="onClick()" 
+                                           (change)="onChange($event)"
+                                           accept="image/png, image/jpeg, image/jpg, image/gif"
+                                           class="form-control" />
+                        
+                                    <div class="text-danger" *ngIf="fg.get('imageProfil')?.errors?.['imageBig']">L'image est très grande</div>
+                                    <div class="text-danger" *ngIf="fg.get('imageProfil')?.errors?.['invalidMimeType']">Le type d'image n'est pas valide</div>
+                                
+                                    <button type="submit" class="btn btn-primary btn-sm mt-3">Mettre à jour la photo</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7.5">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Nom complet</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{session.decodedToken.fullName}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{session.decodedToken.email}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Année académique</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{session.decodedToken.anacad}}</p>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Section</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{session.decodedToken.branch}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Etoiles</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{session.decodedToken.stars}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</section>

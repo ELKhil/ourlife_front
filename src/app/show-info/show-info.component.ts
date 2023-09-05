@@ -1,7 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../Services/session.service';
-import { UserService } from '../Services/user.service';
+
+
 
 @Component({
   selector: 'app-show-info',
@@ -10,20 +11,20 @@ import { UserService } from '../Services/user.service';
 })
 export class ShowInfoComponent implements OnInit {
 
-  
+
   isLogged: boolean = false;
 
-  constructor(public session: SessionService,  private _userService : UserService) { }
+
+  constructor(public session: SessionService) { }
 
 
 
   ngOnInit(): void {
-   console.log('ngOnInit called', this.session.isLogged);
-   this.session.isLogged.subscribe(loggedin => {
-    this.isLogged = loggedin
-  });
-  
-}
+    console.log('ngOnInit called', this.session.isLogged);
+    this.session.isLogged.subscribe(loggedin => {
+      this.isLogged = loggedin
+    });
+  }
 
 
 }

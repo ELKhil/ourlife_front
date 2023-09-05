@@ -50,6 +50,11 @@
     background-color: #2a9a39;
     margin-right: 12px;
 }
+#profil{
+    border-radius: 50px;
+    background-color: #569f45;
+    margin-right: 12px;
+}
 #boiteReception{
     border-radius: 50px;
     background-color: #55c075;
@@ -65,7 +70,7 @@
     background-color: #87e468;
     margin-right: 12px;
 }
-#home:hover, #publication:hover, #boiteReception:hover, #soutenir:hover {
+#home:hover, #publication:hover, #boiteReception:hover, #soutenir:hover, #profil:hover {
     background-color:#FFBF00
 }
 

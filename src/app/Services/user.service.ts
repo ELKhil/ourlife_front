@@ -41,12 +41,15 @@ export class UserService {
   }
 
   postNewPassword(value : UserForm){
-
     return this.http.post<any>(environment.api_url + '/api/newpassword', value);
   }
 
   getMessageNotification(): Observable<any>{
     return this.http.get<any>(environment.api_url + '/api/messageNotification');
+  }
+
+  postChangeImage(value : UserForm){
+    return this.http.post<UserForm>(environment.api_url + '/api/changeImage', value);
   }
 
 }

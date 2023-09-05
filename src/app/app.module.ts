@@ -31,6 +31,7 @@ import { ToVideoPipe } from './pipe/to-video.pipe';
 import { MessageComponent } from './message/message.component';
 import { NotificationMessageComponent } from './notification-message/notification-message.component';
 import { MessageDetailsComponent } from './message-details/message-details.component';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { MessageDetailsComponent } from './message-details/message-details.compo
     MessageComponent,
     NotificationMessageComponent,
     MessageDetailsComponent,
+    ProfilComponent,
     
     
   ],
