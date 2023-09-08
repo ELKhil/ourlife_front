@@ -99,11 +99,11 @@
                                     <div *ngIf="post.commentaires.length != 0" >
                                         <div id="showComment" (click)="showComment(post.id)"
                                             class="d-flex flex-row muted-color showComment">
-                                            <span>{{post.commentaires.length}} comments</span> </div>
+                                            <span>{{post.commentaires.length}} {{post.commentaires.length > 1 ? "Commentaire" : "Commentaires"}}</span> </div>
                                     </div>
                                     <div *ngIf="post.commentaires.length == 0">
                                         <div class="d-flex flex-row muted-color"> <span>{{post. commentaires.length}}
-                                                comments</span> </div>
+                                                Commentaires</span> </div>
                                     </div>
 
                                 </div>
