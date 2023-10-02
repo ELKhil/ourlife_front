@@ -1,5 +1,12 @@
 {
     "Accueil" : "Accueil",
     "Se connecter" : "Se connecter",
-    "S'enregistrer" : "S'enregistrer"
+    "S'enregistrer" : "S'enregistrer",
+    "Mur de partage" : "Mur de partage",
+    "Boite de réception" : "Boite de réception",
+    "Mon profil": "Mon profil",
+    "Soutenir le projet" : "Soutenir le projet",
+    "Se deconnecter" : "Se deconnecter",
+    "Anglais" : "Anglais",
+    "Français" : "Français"
 }
