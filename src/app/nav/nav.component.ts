@@ -17,7 +17,7 @@ export class NavComponent implements OnInit {
   constructor(public session: SessionService, 
               private _userService : UserService,
               private notificationService : NotificationService,
-              private translate: TranslateService) { 
+              public translate: TranslateService) { 
                 translate.setDefaultLang('fr');
               }
 

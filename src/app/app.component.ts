@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component } from '@angular/core';
 import { SessionService } from './Services/session.service';
 import { NavigationEnd, Router } from '@angular/router';
@@ -20,7 +21,11 @@ export class AppComponent {
     public session: SessionService,
     private router: Router,
     public dialog: MatDialog,
-  ) {}
+    public translate: TranslateService
+  ) {
+    translate.setDefaultLang('fr'); // langue par défaut
+    translate.use('fr'); // langue active
+  }
 
   confirmDialog(): void {
     const message = `Do you want to save this file?`;
