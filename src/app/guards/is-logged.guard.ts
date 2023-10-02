@@ -19,7 +19,6 @@ export class IsLoggedGuard implements CanActivate {
         take(1),
         map(isLogged => {
           if (isLogged) {
-            console.log("User already logged in. Redirecting to /accueil");
             this.router.navigate(['accueil']);
             return false;
           }

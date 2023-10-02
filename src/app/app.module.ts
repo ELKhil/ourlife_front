@@ -14,7 +14,7 @@ import { MakePosterComponent } from './make-poste/make-poste.component';
 import { CalculeTimePipe } from './pipe/calcule-time.pipe';
 import { ToImagePipe } from './pipe/to-image.pipe';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,6 +35,12 @@ import { ProfilComponent } from './profil/profil.component';
 import { AcceptTermsModalComponent } from './accept-terms-modal/accept-terms-modal.component';
 import { TermsComponent } from './terms/terms.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -78,6 +84,13 @@ import { PrivacyComponent } from './privacy/privacy.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
     
     
   ],

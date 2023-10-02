@@ -12,15 +12,15 @@
       <ul class="navbar-nav mr-auto d-flex align-items-center">
 
         <li class="nav-item">
-          <a class="btn btn-sm ml-5" routerLink="accueil" id="home"><i class="fa fa-home"></i> Accueil</a>
+          <a class="btn btn-sm ml-5" routerLink="accueil" id="home"><i class="fa fa-home"></i> {{ "Accueil" | translate }}</a>
         </li>
         <li class="nav-item" *ngIf="!isLogged" id="seConnecter">
-          <a class="btn btn-sm ml-5" routerLink="login"><i class="fa fa-sign-in"></i> Se connecter</a>
+          <a class="btn btn-sm ml-5" routerLink="login"><i class="fa fa-sign-in"></i> {{ "Se connecter" | translate }}</a>
         </li>
 
         <li class="nav-item" *ngIf="!isLogged">
           <a class="btn btn-sm ml-5" routerLink="register" id="sinscrire"><i class="fa fa-registered"></i>
-            S'enregistrer</a>
+            {{ "S'enregistrer" | translate }}</a>
         </li>
         <li class="nav-item" *ngIf="isLogged">
           <a class="btn btn-sm ml-5" routerLink="/publication" id="publication"><i class="fa fa-file-image-o"></i> Mur
@@ -50,6 +50,13 @@
               class="fa fa-sign-out"></i> Se deconnecter</a>
         </li>
       </ul>
+        <!-- Ajoutez votre sélecteur de langue ici -->
+        <select class="selectpicker" data-width="fit" (change)="changeLanguage($event)">
+          <option data-content='<span class="flag-icon flag-icon-us"></span> English' value="en">English</option>
+          <option data-content='<span class="flag-icon flag-icon-mx"></span> Français' value="fr">Français</option>
+      </select>
+      
+      
     </div>
   </nav>
 </div>

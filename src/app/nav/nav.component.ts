@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SessionService } from '../Services/session.service';
 import { UserService } from '../Services/user.service';
 import { NotificationService } from '../Services/notificationService';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-nav',
@@ -14,7 +16,10 @@ export class NavComponent implements OnInit {
 
   constructor(public session: SessionService, 
               private _userService : UserService,
-              private notificationService : NotificationService) { }
+              private notificationService : NotificationService,
+              private translate: TranslateService) { 
+                translate.setDefaultLang('fr');
+              }
 
               ngOnInit(): void {
                 this.messageNotification = this.notificationService.getCurrentCount();
@@ -48,5 +53,12 @@ export class NavComponent implements OnInit {
       navbar.classList.toggle('show');
     }
   }
+  changeLanguage(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const lang = selectElement.value;
+    this.translate.use(lang); 
+  }
+
+
 
 }
