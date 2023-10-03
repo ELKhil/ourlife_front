@@ -8,6 +8,15 @@
     "Soutenir le projet": "Soutenir le projet",
     "Se deconnecter": "Disconnect",
     "Anglais" : "English",
-    "Français" : "French"
+    "Français" : "French",
+    "Bienvenue" : "Welcome to OurLife",
+    "Introduction" : "The OurLife application has been designed to work in parallel with Chamilo, with the aim of strengthening relations and communication between students in the same course.",
+    "Ourlife" : "About OurLife",
+    "OurlifeP1": "OurLife is a miniature social entertainment network, specifically designed for students and segmented according to course and academic year. The aim of OurLife is to create a space for students to communicate, share and help each other.",
+    "OurlifeP2" : "On the OurLife platform, each student group has its own sharing space, presented in the form of an exchange wall. Each student can publish, comment on or share one or more articles, photos, videos or documents.",
+    "Droit" : "© 2023 OurLife. All rights reserved.",
+    "MotDePasse" : "Password",
+    "MotDePasseOublie" : "Forgot your password...?",
+    "Connexion" : "Connection"
     
 }
